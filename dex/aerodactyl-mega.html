@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>McMaster Pokemon League</title>
+		<link rel="icon" href="../images/suicune.png">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<style>
+			img {
+				float: left;
+				background-color: white;
+				border: 2px solid black;
+				padding: 10px;
+				border-radius: 25px;
+			}
+			table {
+				float: left;
+			}
+			th, td {
+				text-align: right;  
+				width: 80px;
+			}
+			body {
+				font-family: Arial, Helvetica, sans-serif;
+			}
+
+			.navbar {
+				overflow: hidden;
+				background-color: #333;
+			}
+
+			.navbar a {
+				float: left;
+				font-size: 16px;
+				color: white;
+				text-align: center;
+				padding: 14px 16px;
+				text-decoration: none;
+			}
+
+			.dropdown {
+				float: left;
+				overflow: hidden;
+			}
+
+			.dropdown .dropbtn {
+				font-size: 16px;  
+				border: none;
+				outline: none;
+				color: white;
+				padding: 14px 16px;
+				background-color: inherit;
+				font-family: inherit;
+				margin: 0;
+			}
+
+			.navbar a:hover, .dropdown:hover .dropbtn {
+			  background-color: #00c5ff;
+			}
+
+			.dropdown-content {
+				display: none;
+				position: absolute;
+				background-color: #f9f9f9;
+				min-width: 160px;
+				box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+				z-index: 1;
+			}
+
+			.dropdown-content a {
+				float: none;
+				color: black;
+				padding: 12px 16px;
+				text-decoration: none;
+				display: block;
+				text-align: left;
+			}
+
+			.dropdown-content a:hover {
+				background-color: #ddd;
+			}
+
+			.dropdown:hover .dropdown-content {
+				display: block;
+			}
+		</style>
+	</head>
+
+	<body bgcolor= "e9faff">
+		<div class="navbar">
+			<a href="../homepage.html">Home</a>
+			<a href="../tools/main.html">Resources and Tools</a>
+			<a href="../dex/main.html">Pokemon Articles</a>
+			<div class="dropdown">
+				<button class="dropbtn">Guides 
+					<i class="fa fa-caret-down"></i>
+				</button>
+				<div class="dropdown-content">
+					<a href="../guides/teambuilding.html">Teambuilding 101</a>
+					<a href="../guides/battling.html">Battling 101</a>
+				</div>
+			</div> 
+		</div>
+		
+			<h1>Aerodactyl-Mega</h1>
+		<img src="https://play.pokemonshowdown.com/sprites/xyani/aerodactyl-mega.gif" alt="pokemon">
+		<table>
+			<tr>
+				<td>HP:</td>
+				<td>80</td>
+			</tr>
+			<tr>
+				<td>Atk:</td>
+				<td>135</td>
+			</tr>
+			<tr>
+				<td>Def:</td>
+				<td>85</td>
+			</tr>
+			<tr>
+				<td>SpA:</td>
+				<td>70</td>
+			</tr>
+			<tr>
+				<td>SpD:</td>
+				<td>95</td>
+			</tr>
+			<tr>
+				<td>Spe:</td>
+				<td>150</td>
+			</tr>
+		</table>
+		<script src="dist/Chart.js"></script>
+		<canvas id="myChart" width="300" height="150"></canvas>
+		<script>
+			var ctx = document.getElementById('myChart');
+			var myChart = new Chart(ctx, {
+				type: 'radar',
+				data: {
+					labels: ['HP', 'Atk', 'Def', 'Spe', 'SpD', 'SpA'],
+					datasets: [{
+						label: 'Stats',
+						data: [80, 135, 85, 150, 95, 85],
+						backgroundColor: 'rgba(0, 0, 255, 0.2)',
+						borderColor: 'rgba(0, 0, 255, 1)',
+						borderWidth: 1
+					}]
+				},
+				options: {
+					responsive: false,
+					scale: {
+						ticks: {
+							display: false,
+							maxTicksLimit: 4,
+							fontColor: 'black',
+						},
+					},
+					legend: {
+						display: false
+					},
+					layout: {
+						padding: {
+							left: 0,
+						},
+					},
+				},
+			});
+			</script>
+		<br>
+		<p>Typing: Rock / Flying</p>
+		<p>Abilities: Tough Claws</p>
+		<br>
+		<h2>Overview</h2>
+		<p>Description of how the Pokemon plays.</p>
+		<br>
+		<h2>Common Sets</h2>
+		<p>Good sets along with guidelines of how to use them.</p>
+		<br>
+		<h2>Recommended Teammates</h2>
+		<p>Explanations of good partners with the Pokemon. Vary tiers and archetypes.</p>
+		<br>
+		<h2>Counterplay</h2>
+		<p>Explain different ways to beat the Pokemon.</p>
+	</body>
+</html>
