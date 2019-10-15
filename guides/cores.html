@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>McMaster Pokemon League</title>
+		<link rel="icon" href="../images/suicune.png">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<style>
+			p {
+				text-align: justify;
+			}
+			.button {
+				background-color: #4CAF50;
+				border: none;
+				color: white;
+				padding: 15px 22px;
+				text-align: center;
+				text-decoration: none;
+				display: inline-block;
+				font-size: 14px;
+				margin: 0px 2px;
+				cursor: pointer;
+			}
+			.div {
+				background-color: white;
+				width: 70%;
+				padding: 2px 10px;
+			}
+			th, td {
+				text-align: center;  
+				width: 150px;
+			}
+			
+			body {
+				font-family: Arial, Helvetica, sans-serif;
+			}
+
+			.navbar {
+				overflow: hidden;
+				background-color: #333;
+			}
+
+			.navbar a {
+				float: left;
+				font-size: 16px;
+				color: white;
+				text-align: center;
+				padding: 14px 16px;
+				text-decoration: none;
+			}
+
+			.dropdown {
+				float: left;
+				overflow: hidden;
+			}
+
+			.dropdown .dropbtn {
+				font-size: 16px;  
+				border: none;
+				outline: none;
+				color: white;
+				padding: 14px 16px;
+				background-color: inherit;
+				font-family: inherit;
+				margin: 0;
+			}
+
+			.navbar a:hover, .dropdown:hover .dropbtn {
+			  background-color: #00c5ff;
+			}
+
+			.dropdown-content {
+				display: none;
+				position: absolute;
+				background-color: #f9f9f9;
+				min-width: 160px;
+				box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+				z-index: 1;
+			}
+
+			.dropdown-content a {
+				float: none;
+				color: black;
+				padding: 12px 16px;
+				text-decoration: none;
+				display: block;
+				text-align: left;
+			}
+
+			.dropdown-content a:hover {
+				background-color: #ddd;
+			}
+
+			.dropdown:hover .dropdown-content {
+				display: block;
+			}
+		</style>
+	</head>
+
+	<body bgcolor= "e9faff">
+		<div class="navbar">
+			<a href="../homepage.html">Home</a>
+			<a href="../tools/main.html">Resources and Tools</a>
+			<a href="../dex/main.html">Pokemon Articles</a>
+			<div class="dropdown">
+				<button class="dropbtn">Guides 
+					<i class="fa fa-caret-down"></i>
+				</button>
+				<div class="dropdown-content">
+					<a href="teambuilding.html">Teambuilding 101</a>
+					<a href="battling.html">Battling 101</a>
+				</div>
+			</div> 
+		</div>
+		<h1>Cores and Synergy</h1>
+		<p><img src="../images/core.png" alt="cinccino_and_golurk" style="float:right;display:block;margin-top:auto;margin-bottom:100%;margin-left:auto;margin-right:auto;width:30%"/>A strong understanding of teambuilding is by far the most important skill required in a Pokemon player. However it is an art that is not quite intuitive, requiring continuous practice and forging to take to an excellent level. This guide will teach you about the foundations of any successful team, starting with...</p>
+		<br>
+		<h2>Synergy</h2>
+		<p><font size="-1"><i>"The interaction or cooperation of two or more organizations, substances, or other agents to produce a combined effect greater than the sum of their separate effects."</i></font></p>
+		<p>Simply put, synergy is how well two or more Pokemon work together. This is the most essential part of teambuilding, as it separates a well-made team from one consisting of random Pokémon. Teams that lack synergy are prone to having most or all of their team swept or walled by certain Pokémon, as they lack the necessary checks and counters to these threats. On the other hand, having good synergy allows your team to sweep or wall any opposing team with ease.</p>
+		<p><i><u>Synergy through typing:</i></u> Synergy through typing is when two or more Pokémon are mutually resistant or immune to the other's weaknesses. This synergy is often observed in defensive backbones for a team.</p>
+		<p><i><u>Synergy through checks/counters:</i></u> Instead of each Pokémon covering the other's weaknesses through its typing, check/counter synergy involves two Pokémon that work well together because each can remove the other's specific checks and counters. This type of synergy aims to give let each Pokémon give its teammate an easier time fulfilling its role, whether it's walling or sweeping, by removing the Pokémon that stop it from doing so.</p>
+		<p>Here is a core that demonstrates both type and check synergy:</p>
+		<br>
+		<img src="https://play.pokemonshowdown.com/sprites/xyani/rotom-wash.gif" alt="rotom-wash" class="center"><img src="https://play.pokemonshowdown.com/sprites/xyani/dragalge.gif" alt="dragalge" class="center">
+		<p><i><font size="-1">Thanks to levitate, Rotom-W has a sole weakness to grass type attacks. Dragalge quad resists grass and can get free adaptability-boosted hits off while appreciating rotom’s ability to pivot easily. The ground immunity and ability to check most steels is also a plus from Rotom to ease Dragalge's weakness to ground types.</i></font></p>
+		<br>
+		<h2>Cores</h2>
+		<p>Cores are the crystallization of two or more Pokemon sharing synergy as explained above. They’re especially potent and easily draw out the strengths of your pokemon, offensively and defensively. Click on any of the common recurring type cores for more information and some samples too:</p>
+		
+		<button class="button" onclick="fwgFunction()">Fire/Water/Grass</button>
+		<script>
+		function fwgFunction() {
+		  var x = document.getElementById("fwg");
+		  if (x.style.display === "block") {
+			x.style.display = "none";
+		  } else {
+			x.style.display = "block";
+		  }
+		}
+		</script>
+		
+		<button class="button" onclick="fpdFunction()">Fighting/Psychic/Dark</button>
+		<script>
+		function fpdFunction() {
+		  var x = document.getElementById("fpd");
+		  if (x.style.display === "block") {
+			x.style.display = "none";
+		  } else {
+			x.style.display = "block";
+		  }
+		}
+		</script>
+		
+		<button class="button" onclick="fdsFunction()">Fairy/Dragon/Steel</button>
+		<script>
+		function fdsFunction() {
+		  var x = document.getElementById("fds");
+		  if (x.style.display === "block") {
+			x.style.display = "none";
+		  } else {
+			x.style.display = "block";
+		  }
+		}
+		</script>
+		
+		<button class="button" onclick="wggFunction()">Water/Grass/Ground</button>
+		<script>
+		function wggFunction() {
+		  var x = document.getElementById("wgg");
+		  if (x.style.display === "block") {
+			x.style.display = "none";
+		  } else {
+			x.style.display = "block";
+		  }
+		}
+		</script>
+		
+		<button class="button" onclick="fdFunction()">Fairy/Dark</button>
+		<script>
+		function fdFunction() {
+		  var x = document.getElementById("fd");
+		  if (x.style.display === "block") {
+			x.style.display = "none";
+		  } else {
+			x.style.display = "block";
+		  }
+		}
+		</script>
+		
+		<button class="button" onclick="dfFunction()">Fire/Dragon</button>
+		<script>
+		function dfFunction() {
+		  var x = document.getElementById("df");
+		  if (x.style.display === "block") {
+			x.style.display = "none";
+		  } else {
+			x.style.display = "block";
+		  }
+		}
+		</script>
+		
+		<div id="fwg" class="div" style="display:none">
+		<h4>Fire/Water/Grass</h4>
+		<p>A very beginner-friendly, intuitive, forgiving, flexible, but potent type core. FWG cores can built in a ton of different ways and can fit on near all playstyles, from fast offense to semi-stall. They provide a ton of key resistances to common attacking types and all cover each other well in terms of weaknesses. They often form the defensive basis of your team, but can go on the offensive too.</p>
+		<br>
+		<img src="https://play.pokemonshowdown.com/sprites/xyani/heatran.gif" alt="heatran" class="center"><img src="https://play.pokemonshowdown.com/sprites/xyani/tapufini.gif" alt="tapu_fini" class="center"><img src="https://play.pokemonshowdown.com/sprites/xyani/venusaur-mega.gif" alt="venusaur-mega" class="center">
+		<p><i><font size="-1">Heatran/Fini/Venusaur-Mega is an example of a bulky FWG core and these make for a great basis of a team.</i></font></p>
+		<img src="https://play.pokemonshowdown.com/sprites/xyani/darmanitan.gif" alt="darmanitan" class="center"><img src="https://play.pokemonshowdown.com/sprites/xyani/rotom-wash.gif" alt="rotom-wash" class="center"><img src="https://play.pokemonshowdown.com/sprites/xyani/whimsicott.gif" alt="whimsicott" class="center">
+		<p><i><font size="-1">Darmanitan/Rotom-W/Whimsicott is an example of how a FWG core can be built offensively, such as in a volt-turn playstyle.</i></font></p>
+		</div>
+		
+		<div id="fpd" class="div" style="display:none">
+		<h4>Fighting/Psychic/Dark</h4>
+		<p>FPD cores are harder to work with but are very offensively inclined, as the triple type combo can cover each other’s offensive resists properly. It usually functions by having the dark type beat down or pursuit trap ghost/psychics for the psychic type and fighting type in the core to function freely.</p>
+		<br>
+		<img src="https://play.pokemonshowdown.com/sprites/xyani/gallade-mega.gif" alt="gallade-mega" class="center"><img src="https://play.pokemonshowdown.com/sprites/xyani/bisharp.gif" alt="bisharp" class="center">
+		<p><i><font size="-1">An infamous ORAS duo and the posterboy FPD core, Gallade-Sharp consists of Bisharp freely setting up on or trapping Gallade’s sparse checks such as Latios and Sableye-M, while Gallade-M can break the rest of the entire metagame very effectively.</i></font></p>
+		</div>
+		
+		<div id="fds" class="div" style="display:none">
+		<h4>Fairy/Dragon/Steel</h4>
+		<p>FDS cores are a rather forgiving and tend to be very effective, though they are somewhat harder to build than other cores because of the explosive nature of dragon types in competitive play. The types cover each other well and have elements of offense and defense simultaneously.</p>
+		<br>
+		<img src="https://play.pokemonshowdown.com/sprites/xyani/gardevoir-mega.gif" alt="gardevoir-mega" class="center"><img src="https://play.pokemonshowdown.com/sprites/xyani/hydreigon.gif" alt="hydreigon" class="center"><img src="https://play.pokemonshowdown.com/sprites/xyani/magnezone.gif" alt="magnezone" class="center">
+		<p><i><font size="-1">Dragons + Magnezone was a common archetype in Gen 5, thriving off of attackers with similar checks abusing Magnezone’s ability to remove key threats for free. Gardevoir-M adds a fairy to the core while still sharing checks with Hydreigon. The three can take key hits from the opposition for each other and retaliate hard, as expected of an FDS core.</i></font></p>
+		</div>
+		
+		<div id="wgg" class="div" style="display:none">
+		<h4>Water/Grass/Ground</h4>
+		<p>Typically a defensive core, WGG cores give a ton of crucial resistances and immunities to very threatening types. They are amazing on near all archetypes and are very versatile. These cores tend to fill out a lot of checkboxes in the utility section, such as hazard setters and removers.</p>
+		<br>
+		<img src="https://play.pokemonshowdown.com/sprites/xyani/empoleon.gif" alt="empoleon" class="center"><img src="https://play.pokemonshowdown.com/sprites/xyani/rotom-mow.gif" alt="rotom-mow" class="center"><img src="https://play.pokemonshowdown.com/sprites/xyani/donphan.gif" alt="donphan" class="center">
+		<p><i><font size="-1">Empoleon, Rotom-Mow, and Donphan together are a bulky offensive core that provides key resistances to a ton of threatening offensive types, while providing two hazard setters and three hazard removers.</i></font></p>
+		</div>
+		
+		<div id="fd" class="div" style="display:none">
+		<h4>Fairy/Dark</h4>
+		<p>A very dangerous and surprisingly underutilized offensive type core, fairy/dark together hit almost the entire game for neutral damage or better. This type duo tends to be frail, but the common offensive partners that abuse this typing are some of the most threatening breakers in the game.</p>
+		<br>
+		<img src="https://play.pokemonshowdown.com/sprites/xyani/azumarill.gif" alt="azumarill" class="center"><img src="https://play.pokemonshowdown.com/sprites/xyani/krookodile.gif" alt="krookodile" class="center">
+		<p><i><font size="-1">Azumarill and Krookodile make for some savage offensive type synergy, covering each other’s checks or just straight up destroying similar switch-ins until they crumble. While they may seem to share a grass weakness, Azumarill can use a sap sipper set to wall many grass types.</i></font></p>
+		</div>
+		
+		<div id="df" class="div" style="display:none">
+		<h4>Fire/Dragon</h4>
+		<p>The premise behind this powerful offensive type core is simple: dragons struggle with ice, steel, and fairy types. Fire types incinerate and/or resist those, while appreciating dragons resisting water type attacks that target fire types.</p>
+		<br>
+		<img src="https://play.pokemonshowdown.com/sprites/xyani/infernape.gif" alt="infernape" class="center"><img src="https://play.pokemonshowdown.com/sprites/xyani/latios.gif" alt="latios" class="center">
+		<p><i><font size="-1">Infernape often lures in water types and can pivot out to Latios, which can break down bulky waters nicely. In exchange, Latios appreciates Infernape’s ability to shred through steel types that may give Latios some trouble. Interestingly, it fills out most of a FPD core as well.</i></font></p>
+		</div>
+		<br>
+		<h2>Conclusion</h2>
+		<p>Hopefully after reading this guide, you have gained some knowledge on how to effectively teambuild and just what makes a powerful foundation for any competitive team worth its weight. With the large breadth of knowledge, huge depth of creativity, and a decent amount of elbow grease... you too can become a top-class teambuilder. Take things one core at a time, and you'll immediately see improvement!</p>
+	</body>
+</html>
