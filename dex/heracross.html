@@ -6,7 +6,25 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<style>
-			img {
+			p {
+				text-align: justify;
+			}
+			.button {
+				background-color: Transparent;
+				border: none;
+				text-align: center;
+				text-decoration: none;
+				display: inline-block;
+				font-size: 14px;
+				margin: 0px 2px;
+				cursor: pointer;
+			}
+			.div {
+				background-color: white;
+				width: 75%;
+				padding: 2px 10px;
+			}
+			.img {
 				float: left;
 				background-color: white;
 				border: 2px solid black;
@@ -103,7 +121,8 @@
 		</div>
 		
 			<h1>Heracross</h1>
-		<img src="https://play.pokemonshowdown.com/sprites/xyani/heracross.gif" alt="pokemon">
+			<p>Written by <i>Dondy</i>, edited by <i>Kurai</i></p>
+		<img src="https://play.pokemonshowdown.com/sprites/xyani/heracross.gif" alt="heracross" class="img">
 		<table>
 			<tr>
 				<td>HP:</td>
@@ -171,15 +190,77 @@
 		<p>Abilities: Guts, Moxie, Swarm</p>
 		<br>
 		<h2>Overview</h2>
-		<p>Description of how the Pokemon plays.</p>
+		<p style="width:70%">Blessed with incredibly high base-power STAB attacks, a 125 attack stat, useful coverage, and status insurance in the Guts ability, Heracross maintains a position as a vicious wallbreaker in the draft format. Swords Dance used on a Flame Orb set or the immediate power of a Choice Band in tandem with Guts can allow Heracross to eviscerate common switch-ins to Bug and Fighting types, while a Choice Scarf alongside Moxie gives Heracross immediate cleaning potential. Overall, Heracross is generally a straightforward powerhouse that can plow its way through the opposition by simply using the correct attacks.</p>
 		<br>
 		<h2>Common Sets</h2>
-		<p>Good sets along with guidelines of how to use them.</p>
+		
+		<button class="button" onclick="sd()"><h4>Swords Dance/Band</h4></button>
+		<script>
+		function sd() {
+		  var x = document.getElementById("sd");
+		  if (x.style.display === "block") {
+			x.style.display = "none";
+		  } else {
+			x.style.display = "block";
+		  }
+		}
+		</script>
+		
+		<button class="button" onclick="sc()"><h4><h4>Moxie Scarf</h4></h4></button>
+		<script>
+		function sc() {
+		  var x = document.getElementById("sc");
+		  if (x.style.display === "block") {
+			x.style.display = "none";
+		  } else {
+			x.style.display = "block";
+		  }
+		}
+		</script>
+		
+		<div id="sd" class="div" style="display:none">
+		<p style="white-space: pre">Heracross @ Flame Orb  
+Ability: Guts  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Swords Dance  
+- Facade  
+- Close Combat  
+- Knock Off / Megahorn</p>
+		<p>Swords Dance in conjunction with Guts boost Heracross’ attack to unfathomable levels, and turns walls into absolute food for the bug. At +2, there aren’t many ‘mons that want to be taking a STAB Close Combat, and the ones that do really don’t want to be taking a 140 base power Facade either. The last moveslot is personal preference based on your opponents roster - Knock Off is good utility all around, but Megahorn is a strong STAB move that nukes just about everything that Close Combat doesn’t.</p>
+		<p>This set can, alternatively, use a Choice Band instead of a Flame Orb and replace Swords Dance with another attack move. The tradeoff of move choice in return for higher immediate damage as well as the potential of a band AND Guts boost offers higher reward for higher risk. It should be noted though, that the accumulation of Guts + band can throw prediction out the window as even resists to STABs will take insane amounts of damage.</p>
+		<p>As with draft, the EVs and Nature can be customized to fit your opponent’s roster. Run just enough Speed EVs to outspeed the more defensively orientated Pokemon on your opponent’s roster, and if you can get by with an Adamant nature instead of Jolly, run that as well. Flame Orb is essential in order to activate Guts, and is chosen over a Toxic Orb as it will deal far less turn-by-turn damage over the course of a game. Since you’ll be spending the majority of the match burned, Heracross makes for a fantastic offensive switch-in to status moves like Spore, Will-o-wisp or even weaker Scalds from Pokemon like Toxapex.</p>
+		</div>
+		
+		<div id="sc" class="div" style="display:none">
+		<p style="white-space: pre">Heracross @ Choice Scarf  
+Ability: Moxie 
+EVs: 72 HP / 252 Atk / 180 Spe  
+Adamant Nature  
+- Megahorn
+- Close Combat
+- Stone Edge    
+- Knock Off
+</p>
+		<p>Choice Scarf Heracross is one of the most consistent revenge killers out there, due to its expansive movepool and hard-hitting STABs. Being able to outspeed even the fastest of threats, such as Alakazam-M and Aerodactyl-M, and OHKO them back with Megahorn/Stone Edge makes Heracross frighteningly consistent, if slightly one-dimensional. Moxie can potentially snowball Heracross out of control in the late game, being able to accumulate boosts off of weakened rosters especially if Stealth Rock/Spikes are up.</p>
+		<p>As stated earlier - EVs and Natures should be custom-made for your opponents roster. The example set runs enough speed to outspeed max speed Tornadus-Therian, but with a Jolly nature and some more EV investment it is wholly capable of outspeeding up to base 150 speed Pokemon.</p>
+		</div>
+		
+		<p style="width:70%">While Flame Orb, Scarf, and Band are the most common sets, the flexibility found in draft leagues allows for Heracross to surprise opponents with some more unorthodox sets. Bug/Fighting in combination with useful bulk and some HP investment allows it to defensively check Fighting, Steel and Dark types, while Swarm used in tandem with a Buginium Z-Crystal can be used to one-time nuke a resist like Tapu Fini or Sylveon.</p>
 		<br>
 		<h2>Recommended Teammates</h2>
-		<p>Explanations of good partners with the Pokemon. Vary tiers and archetypes.</p>
+		<p style="width:70%"><img src="https://play.pokemonshowdown.com/sprites/xyani/rotom-wash.gif" alt="rotom-wash"><img src="https://play.pokemonshowdown.com/sprites/xyani/rotom-heat.gif" alt="rotom-heat">
+		<br>
+		As with most strong wallbreakers, Heracross enjoys <a href="../guides/voltturn.html">Volt-Turn</a> support in order to get it in for free as many times as possible. Most Rotom formes can help Heracross with this, forcing opponents out with the threat of their high base power STABs like Hydro Pump or Overheat, and spamming a slower Volt Switch to give Heracross a free opportunity to attack.</p>
+		<p style="width:70%"><img src="https://play.pokemonshowdown.com/sprites/xyani/alakazam-mega.gif" alt="alakazam-mega"><img src="https://play.pokemonshowdown.com/sprites/xyani/sharpedo-mega.gif" alt="sharpedo-mega"><img src="https://play.pokemonshowdown.com/sprites/xyani/aerodactyl-mega.gif" alt="aerodactyl-mega">
+		<br>
+		Once Heracross has broken through the walls, cleaners can come in to take advantage of the weakened opposition. Speedy Pokemon like Mega Sharpedo and Mega Aerodactyl can simply win once their checks are weakened or removed. Notably, Mega Alakazam greatly appreciates Heracross' efficiency at ripping through steel and dark types to ease Alakazam's role as an end-game cleaner.</p>
 		<br>
 		<h2>Counterplay</h2>
-		<p>Explain different ways to beat the Pokemon.</p>
+		<p style="width:70%">The best way to answer Heracross is to offensively revenge kill it with faster Pokemon, as the bug's main flaw is its simply average base 85 speed. However, there are moments where Heracross will outspeed a member of your team and you must switch into it. Very little wants to switch in to a Guts-boosted Heracross. Ghost-types like Jellicent or Sableye-M are able to come in for free on Close Combat/Facade, but have trouble staying in on Knock Off or Megahorn. Your best bet to check Heracross is to pivot around with your team - that is to say, for example:</p>
+		<p style="width:70%">	- Heracross is in vs. your Steel type (i.e. Cobalion, Stakataka), you expect Heracross to click Close Combat, so you go into your Ghost-type Pokemon</p>
+		<p style="width:70%">	- Heracross is now in vs. your Ghost type (i.e. Jellicent), you expect Heracross to click Knock Off, so you go into your Fairy-type Pokemon (i.e. Tapu Fini)</p>
+		<p style="width:70%">	- Tapu Fini can now outspeed the Heracross and revenge kill it with Moonblast</p>
+		<p style="width:70%">Heracross’ defenses drop every time it uses Close Combat, making it easier to revenge kill. Playing against Scarf sets is very similar - pivot around until you can identify what move it has locked itself into, then use your resists to revenge kill Heracross.</p>
 	</body>
 </html>

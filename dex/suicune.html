@@ -6,24 +6,19 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<style>
-			figure {
-				flex-flow: row;
-				padding: 5px;
-				max-width: 200px;
-				max-height: 100px;
-				display: inline-block;
-				margin: auto;
-			}
 			img {
-				max-width: 220px;
-				max-height: 150px;
+				float: left;
+				background-color: white;
+				border: 2px solid black;
+				padding: 10px;
+				border-radius: 25px;
 			}
-			figcaption {
-				background-color: #222;
-				color: #fff;
-				font: italic smaller sans-serif;
-				padding: 3px;
-				text-align: center;
+			table {
+				float: left;
+			}
+			th, td {
+				text-align: right;  
+				width: 80px;
 			}
 			body {
 				font-family: Arial, Helvetica, sans-serif;
@@ -106,13 +101,85 @@
 				</div>
 			</div> 
 		</div>
-	<h1>Pokemon Article Directory</h1>
-	<a href="heracross.html">
-		<figure>
-			<img src="https://play.pokemonshowdown.com/sprites/xy/heracross.png"
-				 alt="heracross">
-			<figcaption>Heracross</figcaption>
-		</figure>
-	</a>
+		
+			<h1>Pokemon Name</h1>
+		<img src="https://play.pokemonshowdown.com/sprites/xyani/suicune.gif" alt="pokemon">
+		<table>
+			<tr>
+				<td>HP:</td>
+				<td>100</td>
+			</tr>
+			<tr>
+				<td>Atk:</td>
+				<td>75</td>
+			</tr>
+			<tr>
+				<td>Def:</td>
+				<td>115</td>
+			</tr>
+			<tr>
+				<td>SpA:</td>
+				<td>90</td>
+			</tr>
+			<tr>
+				<td>SpD:</td>
+				<td>115</td>
+			</tr>
+			<tr>
+				<td>Spe:</td>
+				<td>85</td>
+			</tr>
+		</table>
+		<script src="dist/Chart.js"></script>
+		<canvas id="myChart" width="300" height="150"></canvas>
+		<script>
+			var ctx = document.getElementById('myChart');
+			var myChart = new Chart(ctx, {
+				type: 'radar',
+				data: {
+					labels: ['HP', 'Atk', 'Def', 'Spe', 'SpD', 'SpA'],
+					datasets: [{
+						label: 'Stats',
+						data: [100, 75, 115, 85, 115, 90],
+						backgroundColor: 'rgba(0, 0, 255, 0.2)',
+						borderColor: 'rgba(0, 0, 255, 1)',
+						borderWidth: 1
+					}]
+				},
+				options: {
+					responsive: false,
+					scale: {
+						ticks: {
+							display: false,
+							maxTicksLimit: 4,
+							fontColor: 'black',
+						},
+					},
+					legend: {
+						display: false
+					},
+					layout: {
+						padding: {
+							left: 0,
+						},
+					},
+				},
+			});
+			</script>
+		<br>
+		<p>Typing: Type1 / Type2</p>
+		<p>Abilities: Ability1, Ability2, HiddenAbility</p>
+		<br>
+		<h2>Overview</h2>
+		<p>Description of how the Pokemon plays.</p>
+		<br>
+		<h2>Common Sets</h2>
+		<p>Good sets along with guidelines of how to use them.</p>
+		<br>
+		<h2>Recommended Teammates</h2>
+		<p>Explanations of good partners with the Pokemon. Vary tiers and archetypes.</p>
+		<br>
+		<h2>Counterplay</h2>
+		<p>Explain different ways to beat the Pokemon.</p>
 	</body>
 </html>
