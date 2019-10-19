@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>McMaster Pokemon League</title>
+		<link rel="icon" href="../images/suicune.png">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<style>
+			body {
+				font-family: Arial, Helvetica, sans-serif;
+			}
+
+			.navbar {
+				overflow: hidden;
+				background-color: #333;
+			}
+
+			.navbar a {
+				float: left;
+				font-size: 16px;
+				color: white;
+				text-align: center;
+				padding: 14px 16px;
+				text-decoration: none;
+			}
+
+			.dropdown {
+				float: left;
+				overflow: hidden;
+			}
+
+			.dropdown .dropbtn {
+				font-size: 16px;  
+				border: none;
+				outline: none;
+				color: white;
+				padding: 14px 16px;
+				background-color: inherit;
+				font-family: inherit;
+				margin: 0;
+			}
+
+			.navbar a:hover, .dropdown:hover .dropbtn {
+			  background-color: #00c5ff;
+			}
+
+			.dropdown-content {
+				display: none;
+				position: absolute;
+				background-color: #f9f9f9;
+				min-width: 160px;
+				box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+				z-index: 1;
+			}
+
+			.dropdown-content a {
+				float: none;
+				color: black;
+				padding: 12px 16px;
+				text-decoration: none;
+				display: block;
+				text-align: left;
+			}
+
+			.dropdown-content a:hover {
+				background-color: #ddd;
+			}
+
+			.dropdown:hover .dropdown-content {
+				display: block;
+			}
+		</style>
+	</head>
+
+	<body bgcolor= "e9faff">
+		<div class="navbar">
+			<a href="../homepage.html">Home</a>
+			<a href="main.html">Resources and Tools</a>
+			<a href="../dex/main.html">Pokemon Articles</a>
+			<div class="dropdown">
+				<button class="dropbtn">Guides 
+					<i class="fa fa-caret-down"></i>
+				</button>
+				<div class="dropdown-content">
+					<a href="../guides/teambuilding.html">Teambuilding 101</a>
+					<a href="../guides/battling.html">Battling 101</a>
+				</div>
+			</div> 
+		</div>
+		<h1>Draft Tier List Filter</h1>
+		
+		<table>
+			<tr>
+				<td>Tier</td>
+				<td>
+				<select id="tier">
+					<option value="all">All</option>
+					<option value="s">S</option>
+					<option value="a">A</option>
+					<option value="b">B</option>
+					<option value="c">C</option>
+					<option value="d">D</option>
+				</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Type</td>
+				<td>
+				<select id="type">
+                    <option value = "all" selected="selected">All</option>
+                    <option value = "fire">Fire</option>
+                    <option value = "water">Water</option>
+                    <option value = "grass">Grass</option>
+                    <option value = "ground">Ground</option>
+                    <option value = "rock">Rock</option>
+                    <option value = "fighting">Fighting</option>
+                    <option value = "psychic">Psychic</option>
+                    <option value = "dark">Dark</option>
+                    <option value = "ghost">Ghost</option>
+                    <option value = "bug">Bug</option>
+                    <option value = "electric">Electric</option>
+                    <option value = "ice">Ice</option>
+                    <option value = "flying">Flying</option>
+                    <option value = "poison">Poison</option>
+                    <option value = "normal">Normal</option>
+                    <option value = "fairy">Fairy</option>
+                    <option value = "dragon">Dragon</option>
+                    <option value = "steel">Steel</option>
+                </select>
+				</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" id="rocks">Learns Stealth Rock</input></td>
+				<td><input type="checkbox" id="removal">Learns Hazard Removal</input></td>
+			</tr>
+		</table>
+		<br>
+		<button onclick="filter()">Filter</button>
+		
+		<p id="results"></p>
+		
+		<script>
+		function intersect(a, b) {
+			var t;
+			if (b.length > a.length) t = b, b = a, a = t;
+			return a.filter(function (e) {
+				return b.indexOf(e) > -1;
+			});
+		}
+		
+		function filter() {
+			var results = document.getElementById("results");
+			results.innerHTML = "";	
+		
+			var rockers = "Aerodactyl, Aggron, Amaura, Anorith, Arceus, Archen, Archeops, Armaldo, Aron, Aurorus, Azelf, Baltoy, Barbaracle, Bastiodon, Bibarel, Bidoof, Binacle, Bisharp, Blissey, Boldore, Bonsly, Bronzong, Bronzor, Camerupt, Carbink, Carracosta, Celebi, Chansey, Chimchar, Claydol, Clefable, Clefairy, Cobalion, Corsola, Cradily, Cranidos, Crustle, Cubone, Deoxys, Dialga, Diancie, Diglett, Diglett-Alola, Donphan, Drilbur, Druddigon, Dugtrio, Dugtrio-Alola, Dunsparce, Dwebble, Empoleon, Excadrill, Ferroseed, Ferrothorn, Forretress, Gabite, Garchomp, Geodude, Geodude-Alola, Gible, Gigalith, Gligar, Gliscor, Golem, Golem-Alola, Golett, Golurk, Graveler, Graveler-Alola, Grotle, Groudon, Heatran, Hippopotas, Hippowdon, Infernape, Jigglypuff, Jirachi, Kabuto, Kabutops, Kecleon, Kommoo, Krokorok, Krookodile, Lairon, Landorus, Landorus-Therian, Larvitar, Lileep, Lunatone, Lycanroc, Magcargo, Mamoswine, Marowak, Marowak-Alola, Marshtomp, Mawile, Mesprit, Metagross, Metang, Mew, Miltank, Minior, Monferno, Mudbray, Mudsdale, Necrozma, Nidoking, Nidoqueen, Nihilego, Nosepass, Numel, Omanyte, Omastar, Onix, Palossand, Palpitoad, Pawniard, Phanpy, Piloswine, Pineco, Pinsir, Piplup, Prinplup, Probopass, Pupitar, Rampardos, Regirock, Registeel, Relicanth, Rhydon, Rhyhorn, Rhyperior, Rockruff, Roggenrola, Sandile, Sandshrew, Sandshrew-Alola, Sandslash, Sandslash-Alola, Sandygast, Seismitoad, Shieldon, Shuckle, Skarmory, Solrock, Stakataka, Steelix, Stunfisk, Sudowoodo, Swampert, Swinub, Terrakion, Tirtouga, Torkoal, Torterra, Turtwig, Tyranitar, Tyrantrum, Tyrunt, Uxie, Wigglytuff, Wormadam-Sandy, Wormadam-Trash, Aerodactyl-Mega, Aggron-Mega, Camerupt-Mega, Diancie-Mega, Garchomp-Mega, Mawile-Mega, Metagross-Mega, Pinsir-Mega, Steelix-Mega, Swampert-Mega, Tyranitar-Mega, Landorus-Therian".toLowerCase();
+			var removers = "Aerodactyl, Altaria, Anorith, Arceus, Archen, Archeops, Armaldo, Articuno, Avalugg, Baltoy, Beautifly, Beedrill, Bergmite, Blastoise, Blaziken, Bounsweet, Braviary, Butterfree, Carnivine, Castform, Charizard, Chatot, Chimecho, Claydol, Cloyster, Combusken, Comfey, Cottonee, Crobat, Cryogonal, Cutiefly, Dartrix, Decidueye, Delibird, Dhelmise, Donphan, Dragonite, Drampa, Drifblim, Drifloon, Drilbur, Ducklett, Dustox, Emolga, Empoleon, Excadrill, Farfetchd, Fearow, Finneon, Fletchinder, Fletchling, Florges, Flygon, Fomantis, Forretress, Giratina, Gligar, Gliscor, Golbat, Hawlucha, Hitmonchan, Hitmonlee, Hitmontop, Ho-Oh, Honchkrow, Hoothoot, Hydreigon, Illumise, Kabuto, Kabutops, Kartana, Klefki, Komala, Landorus, Latias, Latios, Ledian, Lugia, Lumineon, Lunala, Lurantis, Mandibuzz, Mantine, Masquerain, Mew, Moltres, Mothim, Murkrow, Ninjask, Noctowl, Noibat, Noivern, Nuzleaf, Oricorio, Pelipper, Pheromosa, Pidgeot, Pidgeotto, Pidgey, Pidove, Pikipek, Pineco, Piplup, Prinplup, Rayquaza, Reshiram, Ribombee, Rotom, Rowlet, Rufflet, Salamence, Sandshrew, Sandshrew-Alola, Sandslash, Sandslash-Alola, Scizor, Scyther, Seedot, Serperior, Servine, Shellder, Shiftry, Sigilyph, Silvally, Skarmory, Skuntank, Snivy, Spearow, Spinda, Squirtle, Staraptor, Staravia, Starly, Starmie, Staryu, Steenee, Stunky, Swablu, Swanna, Swellow, Swoobat, Taillow, Talonflame, TapuFini, TapuKoko, Tentacool, Tentacruel, Thundurus, Togekiss, Togetic, Torchic, Torkoal, Tornadus, Toucannon, Tranquill, Tropius, Trumbeak, Tsareena, Tyrogue, Unfezant, Venomoth, Vespiquen, Vibrava, Vivillon, Volbeat, Volcanion, Volcarona, Vullaby, Wartortle, Whimsicott, Wingull, Woobat, Xatu, Xerneas, Yanma, Yanmega, Yveltal, Zapdos, Zekrom, Zubat, Aerodactyl-Mega, Altaria-Mega, Beedrill-Mega, Blastoise-Mega, Blaziken-Mega, Charizard-MegaX, Charizard-MegaY, Latias-Mega, Latios-Mega, Pidgeot-Mega, Rayquaza-Mega, Salamence-Mega, Scizor-Mega, Landorus-Therian, Thundurus-Therian, Tornadus-Therian, Rotom-Wash, Rotom-Heat, Rotom-Mow, Rotom-Fan, Rotom-Frost".toLowerCase();
+			
+			var fire = "Arcanine, Arceus-Fire, Blacephalon, Blaziken, Braixen, Camerupt, Castform-Sunny, Chandelure, Charizard, Charmander, Charmeleon, Chimchar, Combusken, Cyndaquil, Darmanitan, Darumaka, Delphox, Emboar, Entei, Fennekin, Flareon, Fletchinder, Groudon-Primal, Growlithe, Heatmor, Heatran, Ho-Oh, Houndoom, Houndour, Incineroar, Infernape, Lampent, Larvesta, Litleo, Litten, Litwick, Magby, Magcargo, Magmar, Magmortar, Marowak-Alola, Marowak-Alola-Totem, Moltres, Monferno, Ninetales, Numel, Oricorio, Pansear, Pignite, Ponyta, Pyroar, Quilava, Rapidash, Reshiram, Rotom-Heat, Salandit, Salazzle, Silvally-Fire, Simisear, Slugma, Talonflame, Tepig, Torchic, Torkoal, Torracat, Turtonator, Typhlosion, Victini, Volcanion, Volcarona, Vulpix, Blaziken-Mega, Camerupt-Mega, Charizard-MegaX, Charizard-MegaY, Houndoom-Mega, Rotom-Heat".toLowerCase();
+			var water = "Alomomola, Araquanid, Arceus-Water, Azumarill, Barbaracle, Barboach, Basculin, Bibarel, Binacle, Blastoise, Brionne, Bruxish, Buizel, Carracosta, Carvanha, Castform-Rainy, Chinchou, Clamperl, Clauncher, Clawitzer, Cloyster, Corphish, Corsola, Crawdaunt, Croconaw, Dewgong, Dewott, Dewpider, Ducklett, Empoleon, Feebas, Feraligatr, Finneon, Floatzel, Frillish, Froakie, Frogadier, Gastrodon, Goldeen, Golduck, Golisopod, Gorebyss, Greninja, Gyarados, Horsea, Huntail, Jellicent, Kabuto, Kabutops, Keldeo, Kingdra, Kingler, Krabby, Kyogre, Lanturn, Lapras, Lombre, Lotad, Ludicolo, Lumineon, Luvdisc, Magikarp, Manaphy, Mantine, Mantyke, Mareanie, Marill, Marshtomp, Milotic, Mudkip, Octillery, Omanyte, Omastar, Oshawott, Palkia, Palpitoad, Panpour, Pelipper, Phione, Piplup, Politoed, Poliwag, Poliwhirl, Poliwrath, Popplio, Primarina, Prinplup, Psyduck, Pyukumuku, Quagsire, Qwilfish, Relicanth, Remoraid, Rotom-Wash, Samurott, Seadra, Seaking, Sealeo, Seel, Seismitoad, Sharpedo, Shellder, Shellos, Silvally-Water, Simipour, Skrelp, Slowbro, Slowking, Slowpoke, Spheal, Squirtle, Starmie, Staryu, Suicune, Surskit, Swampert, Swanna, TapuFini, Tentacool, Tentacruel, Tirtouga, Totodile, Toxapex, Tympole, Vaporeon, Volcanion, Wailmer, Wailord, Walrein, Wartortle, Whiscash, Wimpod, Wingull, Wishiwashi, Wooper, Blastoise-Mega, Gyarados-Mega, Sharpedo-Mega, Slowbro-Mega, Swampert-Mega, Rotom-Wash".toLowerCase();
+			var grass = "Abomasnow, Amoonguss, Arceus-Grass, Bayleef, Bellossom, Bellsprout, Bounsweet, Breloom, Budew, Bulbasaur, Cacnea, Cacturne, Carnivine, Celebi, Cherrim, Cherubi, Chesnaught, Chespin, Chikorita, Cottonee, Cradily, Dartrix, Decidueye, Deerling, Dhelmise, Exeggcute, Exeggutor, Exeggutor-Alola, Ferroseed, Ferrothorn, Fomantis, Foongus, Gloom, Gogoat, Gourgeist, Grotle, Grovyle, Hoppip, Ivysaur, Jumpluff, Kartana, Leafeon, Leavanny, Lileep, Lilligant, Lombre, Lotad, Ludicolo, Lurantis, Maractus, Meganium, Morelull, Nuzleaf, Oddish, Pansage, Paras, Parasect, Petilil, Phantump, Pumpkaboo, Quilladin, Roselia, Roserade, Rotom-Mow, Rowlet, Sawsbuck, Sceptile, Seedot, Serperior, Servine, Sewaddle, Shaymin, Shiftry, Shiinotic, Shroomish, Silvally-Grass, Simisage, Skiddo, Skiploom, Snivy, Snover, Steenee, Sunflora, Sunkern, Swadloon, Tangela, Tangrowth, TapuBulu, Torterra, Treecko, Trevenant, Tropius, Tsareena, Turtwig, Venusaur, Victreebel, Vileplume, Virizion, Weepinbell, Whimsicott, Wormadam, Abomasnow-Mega, Sceptile-Mega, Venusaur-Mega, Rotom-Mow".toLowerCase();
+			var fighting = "Arceus-Fighting, Bewear, Blaziken, Breloom, Buzzwole, Chesnaught, Cobalion, Combusken, Conkeldurr, Crabominable, Crabrawler, Croagunk, Emboar, Gallade, Gurdurr, Hakamo-o, Hariyama, Hawlucha, Heracross, Hitmonchan, Hitmonlee, Hitmontop, Infernape, Keldeo, Kommoo, Lopunny-Mega, Lucario, Machamp, Machoke, Machop, Makuhita, Mankey, Marshadow, Medicham, Meditite, Meloetta-Pirouette, Mewtwo-Mega-X, Mienfoo, Mienshao, Monferno, Pancham, Pangoro, Passimian, Pheromosa, Pignite, Poliwrath, Primeape, Riolu, Sawk, Scrafty, Scraggy, Silvally-Fighting, Stufful, Terrakion, Throh, Timburr, Toxicroak, Tyrogue, Virizion, Blaziken-Mega, Gallade-Mega, Heracross-Mega, Lopunny-Mega, Lucario-Mega, Medicham-Mega, Mewtwo-Mega-X".toLowerCase();
+			var psychic = "Abra, Alakazam, Arceus-Psychic, Azelf, Baltoy, Beheeyem, Beldum, Bronzong, Bronzor, Bruxish, Celebi, Chimecho, Chingling, Claydol, Cosmoem, Cosmog, Cresselia, Darmanitan-Zen, Delphox, Deoxys, Drowzee, Duosion, Elgyem, Espeon, Espurr, Exeggcute, Exeggutor, Gallade, Gardevoir, Girafarig, Gothita, Gothitelle, Gothorita, Grumpig, Hoopa, Hypno, Inkay, Jirachi, Jynx, Kadabra, Kirlia, Latias, Latios, Lugia, Lunala, Lunatone, Malamar, Medicham, Meditite, Meloetta, Meowstic, Mesprit, Metagross, Metang, Mew, Mewtwo, Mime Jr., Mr. Mime, Munna, Musharna, Natu, Necrozma, Oranguru, Oricorio-Pa'u, Raichu-Alola, Ralts, Reuniclus, Sigilyph, Silvally-Psychic, Slowbro, Slowking, Slowpoke, Smoochum, Solgaleo, Solosis, Solrock, Spoink, Starmie, Swoobat, TapuLele, Unown, Uxie, Victini, Wobbuffet, Woobat, Wynaut, Xatu, Alakazam-Mega, Gallade-Mega, Gardevoir-Mega, Latias-Mega, Latios-Mega, Medicham-Mega, Metagross-Mega, Mewtwo-Mega-X, Mewtwo-Mega-Y, Slowbro-Mega".toLowerCase();
+			var dark = "Absol, Arceus-Dark, Bisharp, Cacturne, Carvanha, Crawdaunt, Darkrai, Deino, Drapion, Greninja, Grimer-Alola, Guzzlord, Gyarados-Mega, Honchkrow, Hoopa-Unbound, Houndoom, Houndour, Hydreigon, Incineroar, Inkay, Krokorok, Krookodile, Liepard, Malamar, Mandibuzz, Meowth-Alola, Mightyena, Muk-Alola, Murkrow, Nuzleaf, Pangoro, Pawniard, Persian-Alola, Poochyena, Purrloin, Raticate-Alola, Raticate-Alola-Totem, Rattata-Alola, Sableye, Sandile, Scrafty, Scraggy, Sharpedo, Shiftry, Silvally-Dark, Skuntank, Sneasel, Spiritomb, Stunky, Tyranitar, Umbreon, Vullaby, Weavile, Yveltal, Zoroark, Zorua, Zweilous, Absol-Mega, Gyarados-Mega, Houndoom-Mega, Sableye-Mega, Sharpedo-Mega, Tyranitar-Mega".toLowerCase();
+			var fairy = "Altaria-Mega, Arceus-Fairy, Aromatisse, Audino-Mega, Azumarill, Azurill, Carbink, Clefable, Clefairy, Cleffa, Comfey, Cottonee, Cutiefly, Dedenne, Diancie, Flabe´be´, Floette, Florges, Gardevoir, Granbull, Igglybuff, Jigglypuff, Kirlia, Klefki, Magearna, Marill, Mawile, Mime Jr., Mimikyu, Morelull, Mr. Mime, Ninetales-Alola, Primarina, Ralts, Ribombee, Shiinotic, Silvally-Fairy, Slurpuff, Snubbull, Spritzee, Swirlix, Sylveon, TapuBulu, TapuFini, TapuKoko, TapuLele, Togekiss, Togepi, Togetic, Whimsicott, Wigglytuff, Xerneas, Audino-Mega, Diancie-Mega, Gardevoir-Mega, Mawile-Mega".toLowerCase();
+			var dragon = "Altaria, Ampharos-Mega, Arceus-Dragon, Axew, Bagon, Deino, Dialga, Dragalge, Dragonair, Dragonite, Drampa, Dratini, Druddigon, Exeggutor-Alola, Flygon, Fraxure, Gabite, Garchomp, Gible, Giratina, Goodra, Goomy, Guzzlord, Hakamo-o, Haxorus, Hydreigon, Jangmo-o, Kingdra, Kommoo, Kyurem, Latias, Latios, Naganadel, Necrozma-Ultra, Noibat, Noivern, Palkia, Rayquaza, Reshiram, Salamence, Sceptile-Mega, Shelgon, Silvally-Dragon, Sliggoo, Turtonator, Tyrantrum, Tyrunt, Vibrava, Zekrom, Zweilous, Zygarde, Altaria-Mega, Ampharos-Mega, Charizard-MegaX, Garchomp-Mega, Latias-Mega, Latios-Mega, Rayquaza-Mega, Salamence-Mega, Sceptile-Mega, Zygarde-10%".toLowerCase();
+			var steel = "Aegislash, Aggron, Arceus-Steel, Aron, Bastiodon, Beldum, Bisharp, Bronzong, Bronzor, Celesteela, Cobalion, Dialga, Diglett-Alola, Doublade, Dugtrio-Alola, Durant, Empoleon, Escavalier, Excadrill, Ferroseed, Ferrothorn, Forretress, Genesect, Heatran, Honedge, Jirachi, Kartana, Klang, Klefki, Klink, Klinklang, Lairon, Lucario, Magearna, Magnemite, Magneton, Magnezone, Mawile, Metagross, Metang, Necrozma-Dusk-Mane, Pawniard, Probopass, Registeel, Sandshrew-Alola, Sandslash-Alola, Scizor, Shieldon, Silvally-Steel, Skarmory, Solgaleo, Stakataka, Steelix, Togedemaru, Wormadam-Trash, Aggron-Mega, Lucario-Mega, Mawile-Mega, Metagross-Mega, Scizor-Mega, Steelix-Mega".toLowerCase();
+			var normal = "Aipom, Ambipom, Arceus, Audino, Azurill, Bewear, Bibarel, Bidoof, Blissey, Bouffalant, Braviary, Buneary, Bunnelby, Castform, Chansey, Chatot, Cinccino, Deerling, Delcatty, Diggersby, Ditto, Dodrio, Doduo, Drampa, Dunsparce, Eevee, Exploud, Farfetchd, Fearow, Fletchling, Furfrou, Furret, Girafarig, Glameow, Gumshoos, Happiny, Heliolisk, Helioptile, Herdier, Hoothoot, Igglybuff, Jigglypuff, Kangaskhan, Kecleon, Komala, Lickilicky, Lickitung, Lillipup, Linoone, Litleo, Lopunny, Loudred, Meloetta, Meowth, Miltank, Minccino, Munchlax, Noctowl, Oranguru, Patrat, Persian, Pidgeot, Pidgeotto, Pidgey, Pidove, Pikipek, Porygon, Porygon-Z, Porygon2, Purugly, Pyroar, Raticate, Raticate-Alola, Rattata, Rattata-Alola, Regigigas, Rufflet, Sawsbuck, Sentret, Silvally, Skitty, Slaking, Slakoth, Smeargle, Snorlax, Spearow, Spinda, Stantler, Staraptor, Staravia, Starly, Stoutland, Stufful, Swablu, Swellow, Taillow, Tauros, Teddiursa, Toucannon, Tranquill, Trumbeak, Typenull, Unfezant, Ursaring, Vigoroth, Watchog, Whismur, Wigglytuff, Yungoos, Zangoose, Zigzagoon, Audino-Mega, Kangaskhan-Mega, Lopunny-Mega, Pidgeot-Mega".toLowerCase();
+			var flying = "Aerodactyl, Altaria, Arceus-Flying, Archen, Archeops, Articuno, Beautifly, Braviary, Butterfree, Celesteela, Charizard, Chatot, Combee, Crobat, Dartrix, Delibird, Dodrio, Doduo, Dragonite, Drifblim, Drifloon, Ducklett, Emolga, Farfetchd, Fearow, Fletchinder, Fletchling, Gligar, Gliscor, Golbat, Gyarados, Hawlucha, Ho-Oh, Honchkrow, Hoothoot, Hoppip, Jumpluff, Landorus, Ledian, Ledyba, Lugia, Mandibuzz, Mantine, Mantyke, Masquerain, Minior, Moltres, Mothim, Murkrow, Natu, Ninjask, Noctowl, Noibat, Noivern, Oricorio, Pelipper, Pidgeot, Pidgeotto, Pidgey, Pidove, Pikipek, Pinsir-Mega, Rayquaza, Rotom-Fan, Rowlet, Rufflet, Salamence, Scyther, Shaymin-Sky, Sigilyph, Silvally-Flying, Skarmory, Skiploom, Spearow, Staraptor, Staravia, Starly, Swablu, Swanna, Swellow, Swoobat, Taillow, Talonflame, Thundurus, Togekiss, Togetic, Tornadus, Toucannon, Tranquill, Tropius, Trumbeak, Unfezant, Vespiquen, Vivillon, Vullaby, Wingull, Woobat, Xatu, Yanma, Yanmega, Yveltal, Zapdos, Zubat, Aerodactyl-Mega, Charizard-MegaY, Pidgeot-Mega, Pinsir-Mega, Rayquaza-Mega, Salamence-Mega, Landorus-Therian, Thundurus-Therian, Tornadus-Therian, Rotom-Fan".toLowerCase();
+			var poison = "Amoonguss, Arbok, Arceus-Poison, Ariados, Beedrill, Bellsprout, Budew, Bulbasaur, Croagunk, Crobat, Dragalge, Drapion, Dustox, Ekans, Foongus, Garbodor, Gastly, Gengar, Gloom, Golbat, Grimer, Grimer-Alola, Gulpin, Haunter, Ivysaur, Kakuna, Koffing, Mareanie, Muk, Muk-Alola, Naganadel, Nidoking, Nidoqueen, Nidoran-F, Nidoran-M, Nidorina, Nidorino, Nihilego, Oddish, Poipole, Qwilfish, Roselia, Roserade, Salandit, Salazzle, Scolipede, Seviper, Silvally-Poison, Skorupi, Skrelp, Skuntank, Spinarak, Stunky, Swalot, Tentacool, Tentacruel, Toxapex, Toxicroak, Trubbish, Venipede, Venomoth, Venonat, Venusaur, Victreebel, Vileplume, Weedle, Weepinbell, Weezing, Whirlipede, Zubat, Beedrill-Mega, Gengar-Mega, Venusaur-Mega".toLowerCase();
+			var ground = "Arceus-Ground, Baltoy, Barboach, Camerupt, Claydol, Cubone, Diggersby, Diglett, Diglett-Alola, Donphan, Drilbur, Dugtrio, Dugtrio-Alola, Excadrill, Flygon, Gabite, Garchomp, Gastrodon, Geodude, Gible, Gligar, Gliscor, Golem, Golett, Golurk, Graveler, Groudon, Hippopotas, Hippowdon, Krokorok, Krookodile, Landorus, Larvitar, Mamoswine, Marowak, Marshtomp, Mudbray, Mudsdale, Nidoking, Nidoqueen, Nincada, Numel, Onix, Palossand, Palpitoad, Phanpy, Piloswine, Pupitar, Quagsire, Rhydon, Rhyhorn, Rhyperior, Sandile, Sandshrew, Sandslash, Sandygast, Seismitoad, Silvally-Ground, Steelix, Stunfisk, Swampert, Swinub, Torterra, Trapinch, Vibrava, Whiscash, Wooper, Wormadam-Sandy, Zygarde, Camerupt-Mega, Garchomp-Mega, Steelix-Mega, Swampert-Mega".toLowerCase();
+			var rock = "Aerodactyl, Aggron, Amaura, Anorith, Arceus-Rock, Archen, Archeops, Armaldo, Aron, Aurorus, Barbaracle, Bastiodon, Binacle, Boldore, Bonsly, Carbink, Carracosta, Corsola, Cradily, Cranidos, Crustle, Diancie, Dwebble, Geodude, Geodude-Alola, Gigalith, Golem, Golem-Alola, Graveler, Graveler-Alola, Kabuto, Kabutops, Lairon, Larvitar, Lileep, Lunatone, Lycanroc, Magcargo, Minior, Nihilego, Nosepass, Omanyte, Omastar, Onix, Probopass, Pupitar, Rampardos, Regirock, Relicanth, Rhydon, Rhyhorn, Rhyperior, Rockruff, Roggenrola, Shieldon, Shuckle, Silvally-Rock, Solrock, Stakataka, Sudowoodo, Terrakion, Tirtouga, Tyranitar, Tyrantrum, Tyrunt, Aerodactyl-Mega, Diancie-Mega, Tyranitar-Mega".toLowerCase();
+			var bug = "Accelgor, Anorith, Araquanid, Arceus-Bug, Ariados, Armaldo, Beautifly, Beedrill, Burmy, Butterfree, Buzzwole, Cascoon, Caterpie, Charjabug, Combee, Crustle, Cutiefly, Dewpider, Durant, Dustox, Dwebble, Escavalier, Forretress, Galvantula, Genesect, Golisopod, Grubbin, Heracross, Illumise, Joltik, Kakuna, Karrablast, Kricketot, Kricketune, Larvesta, Leavanny, Ledian, Ledyba, Masquerain, Metapod, Mothim, Nincada, Ninjask, Paras, Parasect, Pheromosa, Pineco, Pinsir, Ribombee, Scatterbug, Scizor, Scolipede, Scyther, Sewaddle, Shedinja, Shelmet, Shuckle, Silcoon, Silvally-Bug, Skorupi, Spewpa, Spinarak, Surskit, Swadloon, Venipede, Venomoth, Venonat, Vespiquen, Vikavolt, Vivillon, Volbeat, Volcarona, Weedle, Whirlipede, Wimpod, Wormadam, Wurmple, Yanma, Yanmega, Beedrill-Mega, Heracross-Mega, Pinsir-Mega, Scizor-Mega".toLowerCase();
+			var ghost = "Aegislash, Arceus-Ghost, Banette, Blacephalon, Chandelure, Cofagrigus, Decidueye, Dhelmise, Doublade, Drifblim, Drifloon, Dusclops, Dusknoir, Duskull, Frillish, Froslass, Gastly, Gengar, Giratina, Golett, Golurk, Gourgeist, Haunter, Honedge, Hoopa, Jellicent, Lampent, Litwick, Lunala, Marowak-Alola, Marowak-Alola-Totem, Marshadow, Mimikyu, Misdreavus, Mismagius, Necrozma-Dawn-Wings, Oricorio-Sensu, Palossand, Phantump, Pumpkaboo, Rotom, Sableye, Sandygast, Shedinja, Shuppet, Silvally-Ghost, Spiritomb, Trevenant, Yamask, Banette-Mega, Gengar-Mega, Sableye-Mega".toLowerCase();
+			var electric = "Ampharos, Arceus-Electric, Blitzle, Charjabug, Chinchou, Dedenne, Eelektrik, Eelektross, Electabuzz, Electivire, Electrike, Electrode, Elekid, Emolga, Flaaffy, Galvantula, Geodude-Alola, Golem-Alola, Graveler-Alola, Heliolisk, Helioptile, Jolteon, Joltik, Lanturn, Luxio, Luxray, Magnemite, Magneton, Magnezone, Manectric, Mareep, Minun, Oricorio-Pom-Pom, Pachirisu, Pichu, Pikachu, Plusle, Raichu, Raichu-Alola, Raikou, Rotom, Shinx, Silvally-Electric, Stunfisk, TapuKoko, Thundurus, Togedemaru, Tynamo, Vikavolt, Voltorb, Xurkitree, Zapdos, Zebstrika, Zekrom, Zeraora, Ampharos-Mega, Manectric-Mega, Thundurus-Therian, Rotom-Wash, Rotom-Heat, Rotom-Mow, Rotom-Fan, Rotom-Frost".toLowerCase();
+			var ice = "Abomasnow, Amaura, Arceus-Ice, Articuno, Aurorus, Avalugg, Beartic, Bergmite, Castform-Snowy, Cloyster, Crabominable, Cryogonal, Cubchoo, Delibird, Dewgong, Froslass, Glaceon, Glalie, Jynx, Kyurem, Lapras, Mamoswine, Ninetales-Alola, Piloswine, Regice, Rotom-Frost, Sandshrew-Alola, Sandslash-Alola, Sealeo, Silvally-Ice, Smoochum, Sneasel, Snorunt, Snover, Spheal, Swinub, Vanillish, Vanillite, Vanilluxe, Vulpix-Alola, Walrein, Weavile, Abomasnow-Mega, Glalie-Mega, Rotom-Frost".toLowerCase();
+			
+			var stier = "Alakazam-Mega, Altaria-Mega, Beedrill-Mega, Blacephalon, Celesteela, Charizard-MegaX, Charizard-MegaY, Clefable, Diancie-Mega, Dragonite, Garchomp, Gardevoir-Mega, Heatran, Hoopa-Unbound, Jirachi, Landorus-Therian, Latias, Latios, Lopunny-Mega, Manaphy, Medicham-Mega, Pinsir-Mega, Reuniclus, Scizor-Mega, TapuBulu, TapuKoko, Venusaur-Mega, Victini, Volcarona".toLowerCase();
+			var atier = "Absol-Mega, Aerodactyl-Mega, Alakazam, Azelf, Azumarill, Bisharp, Blissey, Breloom, Buzzwole, Chandelure, Chansey, Cloyster, Conkeldurr, Darmanitan, Diggersby, Excadrill, Ferrothorn, Gallade-Mega, Garchomp-Mega, Gengar, Gliscor, Gyarados, Gyarados-Mega, Hawlucha, Heracross-Mega, Hippowdon, Hydreigon, Infernape, Keldeo, Klefki, Kommoo, Kyurem, Mamoswine, Mandibuzz, Manectric-Mega, Mimikyu, Nihilego, Ninetales-Alola, Pidgeot-Mega, Porygon2, Raikou, Rotom-Wash, Sableye-Mega, Salamence, Scizor, Scolipede, Serperior, Sharpedo-Mega, Shaymin, Skarmory, Slowbro, Slowbro-Mega, Slowking, Staraptor, Starmie, Suicune, Swampert-Mega, Sylveon, Tangrowth, TapuFini, Terrakion, Thundurus, Thundurus-Therian, Togekiss, Tornadus-Therian, Toxapex, Tyranitar, Tyranitar-Mega, Volcanion, Weavile, Xurkitree, Zapdos, Zeraora".toLowerCase();
+			var btier = "Aggron-Mega, Alomomola, Amoonguss, Araquanid, Arcanine, Barbaracle, Blastoise-Mega, Bronzong, Celebi, Cobalion, Crawdaunt, Cresselia, Crobat, Decidueye, Delphox, Ditto, Donphan, Doublade, Dragalge, Durant, Emboar, Empoleon, Entei, Escavalier, Espeon, Feraligatr, Floette-Eternal, Florges, Flygon, Galvantula, Gligar, Golisopod, Goodra, Haxorus, Heracross, Hoopa, Houndoom-Mega, Jolteon, Kingdra, Krookodile, Lucario, Lycanroc-Dusk, Machamp, Magnezone, Marowak-Alola, Meloetta, Metagross, Mienshao, Milotic, Minior, Moltres, Muk-Alola, Nidoking, Nidoqueen, Omastar, Pelipper, Politoed, Porygon-Z, Primarina, Registeel, Ribombee, Roserade, Rotom-Heat, Rotom-Mow, Salazzle, Sceptile-Mega, Seismitoad, Sharpedo, Silvally, Slurpuff, Snorlax, Stakataka, Steelix-Mega, Swampert, TapuLele, Tentacruel, Tornadus, Tyrantrum, Vaporeon, Virizion, Whimsicott, Zygarde-10%".toLowerCase();
+			var ctier = "Abomasnow-Mega, Absol, Accelgor, Aerodactyl, Ambipom, Ampharos-Mega, Archeops, Aromatisse, Audino-Mega, Avalugg, Banette-Mega, Bewear, Blastoise, Bouffalant, Braviary, Bruxish, Camerupt-Mega, Carracosta, Chesnaught, Cinccino, Cofagrigus, Comfey, Cradily, Cryogonal, Dhelmise, Diancie, Dodrio, Drampa, Drapion, Druddigon, Eelektross, Electivire, Exploud, Forretress, Froslass, Gallade, Garbodor, Gardevoir, Gastrodon, Gigalith, Glalie-Mega, Golbat, Golem-Alola, Golurk, Gourgeist, Granbull, Hariyama, Heliolisk, Hitmonlee, Hitmontop, Honchkrow, Houndoom, Huntail, Incineroar, Jellicent, Kabutops, Kecleon, Kingler, Klinklang, Komala, Lanturn, Leavanny, Lilligant, Linoone, Ludicolo, Lycanroc-Day, Magmortar, Magneton, Malamar, Mantine, Medicham, Meowstic-Male, Mesprit, Miltank, Mismagius, Mudsdale, Musharna, Ninetales, Noivern, Palossand, Pangoro, Passimian, Persian-Alola, Piloswine, Primeape, Pyroar, Quagsire, Qwilfish, Raichu, Raichu-Alola, Regice, Regirock, Rhydon, Rhyperior, Rotom-Fan, Rotom-Frost, Sableye, Samurott, Sawk, Sceptile, Scrafty, Shuckle, Sigilyph, Smeargle, Sneasel, Spiritomb, Stoutland, Swellow, Swoobat, Talonflame, Tauros, Torkoal, Torterra, Toxicroak, Trevenant, Tsareena, Typenull, Typhlosion, Umbreon, Ursaring, Uxie, Vanilluxe, Venomoth, Venusaur, Vikavolt, Vileplume, Weezing, Wishiwashi, Xatu, Yanmega, Zangoose, Zoroark".toLowerCase();
+			var dtier = "Abomasnow, Aggron, Altaria, Ampharos, Arbok, Ariados, Armaldo, Articuno, Audino, Aurorus, Basculin, Bastiodon, Beartic, Beautifly, Beheeyem, Bellossom, Bibarel, Butterfree, Cacturne, Camerupt, Carbink, Carnivine, Charizard, Chatot, Chimecho, Clawitzer, Claydol, Clefairy, Corsola, Crabominable, Crustle, Dewgong, Drifblim, Drilbur, Dugtrio, Dugtrio-Alola, Dunsparce, Duosion, Dusclops, Dusknoir, Electrode, Exeggutor, Exeggutor-Alola, Farfetchd, Fearow, Ferroseed, Flareon, Floatzel, Furfrou, Glaceon, Gogoat, Golduck, Golem, Gorebyss, Gothitelle, Gumshoos, Gurdurr, Guzzlord, Haunter, Hitmonchan, Hypno, Illumise, Jumpluff, Jynx, Kadabra, Kangaskhan, Kricketune, Lapras, Leafeon, Lickilicky, Liepard, Lopunny, Lunatone, Lurantis, Luxray, Lycanroc-Midnight, Manectric, Maractus, Marowak, Masquerain, Mawile, Meganium, Meowstic-F, Mightyena, Mothim, Mr. Mime, Muk, Murkrow, Noctowl, Octillery, Oranguru, Oricorio, Pachirisu, Parasect, Pawniard, Persian, Phione, Pidgeot, Pikachu, Pinsir, Poliwrath, Probopass, Purugly, Pyukumuku, Rampardos, Rapidash, Raticate, Raticate-Alola, Regigigas, Relicanth, Rotom, Sandslash, Sandslash-Alola, Sawsbuck, Scyther, Seaking, Shedinja, Shiftry, Shiinotic, Simipour, Simisage, Simisear, Skuntank, Slaking, Solrock, Stantler, Steelix, Stunfisk, Sudowoodo, Sunflora, Swalot, Swanna, Tangela, Throh, Togedemaru, Togetic, Toucannon, Tropius, Turtonator, Unfezant, Vespiquen, Victreebell, Vivillon, Volbeat, Wailord, Walrein, Whiscash, Wigglytuff, Wormadam, Zebstrika".toLowerCase();
+			
+			var rockers_list = rockers.split(", ");
+			var removers_list = removers.split(", ");
+			
+			var fire_list = fire.split(", ");
+			var water_list = water.split(", ");
+			var grass_list = grass.split(", ");
+			var fighting_list = fighting.split(", ");
+			var psychic_list = psychic.split(", ");
+			var dark_list = dark.split(", ");
+			var fairy_list = fairy.split(", ");
+			var dragon_list = dragon.split(", ");
+			var steel_list = steel.split(", ");
+			var normal_list = normal.split(", ");
+			var flying_list = flying.split(", ");
+			var poison_list = poison.split(", ");
+			var ground_list = ground.split(", ");
+			var rock_list = rock.split(", ");
+			var bug_list = bug.split(", ");
+			var ghost_list = ghost.split(", ");
+			var electric_list = electric.split(", ");
+			var ice_list = ice.split(", ");
+			
+			var s_list = stier.split(", ");
+			var a_list = atier.split(", ");
+			var b_list = btier.split(", ");
+			var c_list = ctier.split(", ");
+			var d_list = dtier.split(", ");
+			
+			var tier = document.getElementById("tier");
+			var tier_value = tier.options[tier.selectedIndex].value;
+			
+			var type = document.getElementById("type");
+			var type_value = type.options[type.selectedIndex].value;
+			
+			var rocks = document.getElementById("rocks");
+			var rocks_value = rocks.checked;
+			
+			var removal = document.getElementById("removal");
+			var removal_value = removal.checked;
+			
+			var start = [];
+			
+			if (tier_value.valueOf() == "all") {
+				start = s_list.concat(a_list, b_list, c_list, d_list);
+			}
+			else if (tier_value.valueOf() == "s") {
+				start = s_list.slice();
+			}
+			else if (tier_value.valueOf() == "a") {
+				start = a_list.slice();
+			}
+			else if (tier_value.valueOf() == "b") {
+				start = b_list.slice();
+			}
+			else if (tier_value.valueOf() == "c") {
+				start = c_list.slice();
+			}
+			else if (tier_value.valueOf() == "d") {
+				start = d_list.slice();
+			}
+			
+			var tier_type = [];
+			
+			if (type_value.valueOf() == "all") {
+				tier_type = start.slice();
+			}
+			else if (type_value.valueOf() == "fire") {
+				tier_type = intersect(start,fire_list);
+			}
+			else if (type_value.valueOf() == "water") {
+				tier_type = intersect(start,water_list);
+			}
+			else if (type_value.valueOf() == "grass") {
+				tier_type = intersect(start,grass_list);
+			}
+			else if (type_value.valueOf() == "ground") {
+				tier_type = intersect(start,ground_list);
+			}
+			else if (type_value.valueOf() == "rock") {
+				tier_type = intersect(start,rock_list);
+			}
+			else if (type_value.valueOf() == "fighting") {
+				tier_type = intersect(start,fighting_list);
+			}
+			else if (type_value.valueOf() == "psychic") {
+				tier_type = intersect(start,psychic_list);
+			}
+			else if (type_value.valueOf() == "dark") {
+				tier_type = intersect(start,dark_list);
+			}
+			else if (type_value.valueOf() == "ghost") {
+				tier_type = intersect(start,ghost_list);
+			}
+			else if (type_value.valueOf() == "bug") {
+				tier_type = intersect(start,bug_list);
+			}
+			else if (type_value.valueOf() == "electric") {
+				tier_type = intersect(start,electric_list);
+			}
+			else if (type_value.valueOf() == "ice") {
+				tier_type = intersect(start,ice_list);
+			}
+			else if (type_value.valueOf() == "flying") {
+				tier_type = intersect(start,flying_list);
+			}
+			else if (type_value.valueOf() == "poison") {
+				tier_type = intersect(start,poison_list);
+			}
+			else if (type_value.valueOf() == "normal") {
+				tier_type = intersect(start,normal_list);
+			}
+			else if (type_value.valueOf() == "fairy") {
+				tier_type = intersect(start,fairy_list);
+			}
+			else if (type_value.valueOf() == "dragon") {
+				tier_type = intersect(start,dragon_list);
+			}
+			else if (type_value.valueOf() == "steel") {
+				tier_type = intersect(start,steel_list);
+			}
+			
+			var tier_type_rocks = tier_type.slice();
+			
+			if (rocks_value) {
+				tier_type_rocks = intersect(tier_type,rockers_list);
+			}
+			
+			var tier_type_rocks_removers = tier_type_rocks.slice();
+			
+			if (removal_value) {
+				tier_type_rocks_removers = intersect(tier_type_rocks,removers_list);
+			}
+			
+			results.innerHTML = "";	
+			
+			tier_type_rocks_removers.forEach(makeImage);
+		}
+		
+		function makeImage(mon) {
+			results.innerHTML += "<img src='https://play.pokemonshowdown.com/sprites/xyani/".concat(mon,".gif'>");
+		}
+		</script>
+	</body>
+</html>
