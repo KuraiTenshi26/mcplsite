@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>McMaster Pokemon League</title>
+		<link rel="icon" href="../images/suicune.png">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<style>
+			body {
+				font-family: Arial, Helvetica, sans-serif;
+			}
+			
+			.border {
+				border: 1px solid black;
+				border-collapse: collapse;
+			}
+			
+			th, td {
+				padding: 5px;
+			}
+			
+			.center {
+				display: block;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			
+			.navbar {
+				overflow: hidden;
+				background-color: #333;
+			}
+
+			.navbar a {
+				float: left;
+				font-size: 16px;
+				color: white;
+				text-align: center;
+				padding: 14px 16px;
+				text-decoration: none;
+			}
+
+			.dropdown {
+				float: left;
+				overflow: hidden;
+			}
+
+			.dropdown .dropbtn {
+				font-size: 16px;  
+				border: none;
+				outline: none;
+				color: white;
+				padding: 14px 16px;
+				background-color: inherit;
+				font-family: inherit;
+				margin: 0;
+			}
+
+			.navbar a:hover, .dropdown:hover .dropbtn {
+			  background-color: #00c5ff;
+			}
+
+			.dropdown-content {
+				display: none;
+				position: absolute;
+				background-color: #f9f9f9;
+				min-width: 160px;
+				box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+				z-index: 1;
+			}
+
+			.dropdown-content a {
+				float: none;
+				color: black;
+				padding: 12px 16px;
+				text-decoration: none;
+				display: block;
+				text-align: left;
+			}
+
+			.dropdown-content a:hover {
+				background-color: #ddd;
+			}
+
+			.dropdown:hover .dropdown-content {
+				display: block;
+			}
+		</style>
+	</head>
+
+	<body bgcolor= "e9faff">
+		<div class="navbar">
+			<a href="../homepage.html">Home</a>
+			<a href="main.html">Resources and Tools</a>
+			<a href="../dex/main.html">Pokemon Articles</a>
+			<div class="dropdown">
+				<button class="dropbtn">Guides 
+					<i class="fa fa-caret-down"></i>
+				</button>
+				<div class="dropdown-content">
+					<a href="../guides/teambuilding.html">Teambuilding 101</a>
+					<a href="../guides/battling.html">Battling 101</a>
+				</div>
+			</div> 
+		</div>
+		<h1>Pokemon Team Planner</h1>
+		<table>
+		<tr>
+		<td>
+			<table>
+				<tr>
+					<td><img src="https://play.pokemonshowdown.com/sprites/bw/unown.png" alt="invalid" class="center" id="sprite1"></td>
+					<td><img src="https://play.pokemonshowdown.com/sprites/bw/unown.png" alt="invalid" class="center" id="sprite2"></td>
+					<td><img src="https://play.pokemonshowdown.com/sprites/bw/unown.png" alt="invalid" class="center" id="sprite3"></td>
+				</tr>
+				<tr>
+					<td><input list="mons" type="text" id="mon1"></td>
+					<td><input list="mons" type="text" id="mon2"></td>
+					<td><input list="mons" type="text" id="mon3"></td>
+				</tr>
+				<tr>
+					<td><img src="https://play.pokemonshowdown.com/sprites/bw/unown.png" alt="invalid" class="center" id="sprite4"></td>
+					<td><img src="https://play.pokemonshowdown.com/sprites/bw/unown.png" alt="invalid" class="center" id="sprite5"></td>
+					<td><img src="https://play.pokemonshowdown.com/sprites/bw/unown.png" alt="invalid" class="center" id="sprite6"></td>
+				</tr>
+				<tr>
+					<td><input list="mons" type="text" id="mon4"></td>
+					<td><input list="mons" type="text" id="mon5"></td>
+					<td><input list="mons" type="text" id="mon6"></td>
+				</tr>
+			</table>
+		</td>
+		<td><table class="border">
+			<tr class="border">
+				<th>Pokemon</th>
+				<th>HP</th>
+				<th>Atk</th>
+				<th>Def</th>
+				<th>SpA</th>
+				<th>SpD</th>
+				<th>Spe</th>
+				<th>BST</th>
+			</tr>
+			<tr class="border">
+				<td><p name="mon"></p></td>
+				<td><p name="hp"></p></td>
+				<td><p name="atk"></p></td>
+				<td><p name="def"></p></td>
+				<td><p name="spa"></p></td>
+				<td><p name="spd"></p></td>
+				<td><p name="spe"></p></td>
+				<td><p name="bst"></p></td>
+			</tr>
+			<tr class="border">
+				<td><p name="mon"></p></td>
+				<td><p name="hp"></p></td>
+				<td><p name="atk"></p></td>
+				<td><p name="def"></p></td>
+				<td><p name="spa"></p></td>
+				<td><p name="spd"></p></td>
+				<td><p name="spe"></p></td>
+				<td><p name="bst"></p></td>
+			</tr>
+			<tr class="border">
+				<td><p name="mon"></p></td>
+				<td><p name="hp"></p></td>
+				<td><p name="atk"></p></td>
+				<td><p name="def"></p></td>
+				<td><p name="spa"></p></td>
+				<td><p name="spd"></p></td>
+				<td><p name="spe"></p></td>
+				<td><p name="bst"></p></td>
+			</tr>
+			<tr class="border">
+				<td><p name="mon"></p></td>
+				<td><p name="hp"></p></td>
+				<td><p name="atk"></p></td>
+				<td><p name="def"></p></td>
+				<td><p name="spa"></p></td>
+				<td><p name="spd"></p></td>
+				<td><p name="spe"></p></td>
+				<td><p name="bst"></p></td>
+			</tr>
+			<tr class="border">
+				<td><p name="mon"></p></td>
+				<td><p name="hp"></p></td>
+				<td><p name="atk"></p></td>
+				<td><p name="def"></p></td>
+				<td><p name="spa"></p></td>
+				<td><p name="spd"></p></td>
+				<td><p name="spe"></p></td>
+				<td><p name="bst"></p></td>
+			</tr>
+			<tr class="border">
+				<td><p name="mon"></p></td>
+				<td><p name="hp"></p></td>
+				<td><p name="atk"></p></td>
+				<td><p name="def"></p></td>
+				<td><p name="spa"></p></td>
+				<td><p name="spd"></p></td>
+				<td><p name="spe"></p></td>
+				<td><p name="bst"></p></td>
+			</tr>
+		</table></td>
+		</tr>
+		</table>
+		<datalist id="mons"></datalist>
+		<br>
+		<button onclick="analyze()">Analyze!</button>
+		<br>
+		<h4>Average Statistics</h4>
+		<canvas id="myChart" width="500" height="500" style="background-color:white"></canvas>
+		
+		<script src="../dist/Chart.js"></script>
+		<script src="pokedex.js"></script>
+		<script>
+			var options = '';
+			
+			for (mon in pokedex) {
+				options += '<option value="'+pokedex[mon].species+'"/>';
+			}
+			
+			document.getElementById('mons').innerHTML = options;
+			
+			function getStats(pokemon) {
+				var stats = [];
+				
+				for (mon in pokedex) {
+					if (pokemon == pokedex[mon].species) {
+						stats[0] = pokedex[mon].baseStats.hp;
+						stats[1] = pokedex[mon].baseStats.atk;
+						stats[2] = pokedex[mon].baseStats.def;
+						stats[3] = pokedex[mon].baseStats.spa;
+						stats[4] = pokedex[mon].baseStats.spd;
+						stats[5] = pokedex[mon].baseStats.spe;
+						stats[6] = stats[0]+stats[1]+stats[2]+stats[3]+stats[4]+stats[5];
+						break;
+					}
+				}
+				
+				return stats;
+			}
+			
+			function analyze() {
+				var current = '';
+				var temp = '';
+				var temp2 = '';
+				var stats = [];
+				
+				var hpsum = 0;
+				var atksum = 0;
+				var defsum = 0;
+				var spasum = 0;
+				var spdsum = 0;
+				var spesum = 0;
+				var bstsum = 0;
+				
+				for (var i = 0; i < 6; i++) {
+					current = document.getElementById("mon".concat((i+1).toString())).value;
+					temp = current.toLowerCase();
+					temp2 = temp.replace(" ","").replace("mega-x","megax").replace("mega-y","megay").replace("-o","o").replace(":","");
+					document.getElementById("sprite".concat((i+1).toString())).src = "https://play.pokemonshowdown.com/sprites/bw/".concat(temp2,".png");
+					
+					stats = getStats(current);
+					
+					document.getElementsByName("mon")[i].innerHTML = current;
+					document.getElementsByName("hp")[i].innerHTML = stats[0];
+					document.getElementsByName("atk")[i].innerHTML = stats[1];
+					document.getElementsByName("def")[i].innerHTML = stats[2];
+					document.getElementsByName("spa")[i].innerHTML = stats[3];
+					document.getElementsByName("spd")[i].innerHTML = stats[4];
+					document.getElementsByName("spe")[i].innerHTML = stats[5];
+					document.getElementsByName("bst")[i].innerHTML = stats[6];
+					
+					hpsum += stats[0];
+					atksum += stats[1];
+					defsum += stats[2];
+					spasum += stats[3];
+					spdsum += stats[4];
+					spesum += stats[5];
+					bstsum += stats[6];
+				}
+				
+				hpsum = hpsum/6;
+				atksum = atksum/6;
+				defsum = defsum/6;
+				spasum = spasum/6;
+				spdsum = spdsum/6;
+				spesum = spesum/6;
+				bstsum = bstsum/6;
+				
+				var ctx = document.getElementById('myChart');
+				var myChart = new Chart(ctx, {
+					type: 'bar',
+					data: {
+						labels: ['HP', 'Atk', 'Def', 'SpA', 'SpD', 'Spe'],
+						datasets: [{
+							label: 'Average Stats',
+							data: [hpsum, atksum, defsum, spasum, spdsum, spesum],
+							backgroundColor: [
+								'rgba(255, 99, 132, 0.2)',
+								'rgba(54, 162, 235, 0.2)',
+								'rgba(255, 206, 86, 0.2)',
+								'rgba(75, 192, 192, 0.2)',
+								'rgba(153, 102, 255, 0.2)',
+								'rgba(255, 255, 255, 0.2)'
+							],
+							borderColor: [
+								'rgba(255, 99, 132, 1)',
+								'rgba(54, 162, 235, 1)',
+								'rgba(255, 206, 86, 1)',
+								'rgba(75, 192, 192, 1)',
+								'rgba(153, 102, 255, 1)',
+								'rgba(255, 159, 64, 1)'
+							],
+							borderWidth: 1
+						}]
+					},
+					options: {
+						responsive: false,
+						scales: {
+							yAxes: [{
+								ticks: {
+									beginAtZero: true
+								}
+							}]
+						},
+						legend: {
+							display: false
+						},
+					},
+				});
+			}
+		</script>
+	</body>
+</html>
