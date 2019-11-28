@@ -214,16 +214,17 @@
 		<script src="pokedex.js"></script>
 		<script>
 			var options = '';
-			
+			//create autofill menu when user types in pokemon name into roster slots, using pokedex.js dataset
 			for (mon in pokedex) {
 				options += '<option value="'+pokedex[mon].species+'"/>';
 			}
 			
 			document.getElementById('mons').innerHTML = options;
-			
+			//gain stats for the 6 pokemon rosters indicated by user
 			function getStats(pokemon) {
 				var stats = [];
 				
+				//iterate through pokemon database extracted from pokedex.js
 				for (mon in pokedex) {
 					if (pokemon == pokedex[mon].species) {
 						stats[0] = pokedex[mon].baseStats.hp;
@@ -255,13 +256,14 @@
 				var bstsum = 0;
 				
 				for (var i = 0; i < 6; i++) {
+					//visualize selected pokemon with sprite images as pulled from an online database
 					current = document.getElementById("mon".concat((i+1).toString())).value;
 					temp = current.toLowerCase();
 					temp2 = temp.replace(" ","").replace("mega-x","megax").replace("mega-y","megay").replace("-o","o").replace(":","");
 					document.getElementById("sprite".concat((i+1).toString())).src = "https://play.pokemonshowdown.com/sprites/bw/".concat(temp2,".png");
 					
 					stats = getStats(current);
-					
+					//get name and stats of current pokemon to display in table
 					document.getElementsByName("mon")[i].innerHTML = current;
 					document.getElementsByName("hp")[i].innerHTML = stats[0];
 					document.getElementsByName("atk")[i].innerHTML = stats[1];
@@ -270,7 +272,7 @@
 					document.getElementsByName("spd")[i].innerHTML = stats[4];
 					document.getElementsByName("spe")[i].innerHTML = stats[5];
 					document.getElementsByName("bst")[i].innerHTML = stats[6];
-					
+					//collect data to get average values
 					hpsum += stats[0];
 					atksum += stats[1];
 					defsum += stats[2];
@@ -288,6 +290,7 @@
 				spesum = spesum/6;
 				bstsum = bstsum/6;
 				
+				//create average stat chart
 				var ctx = document.getElementById('myChart');
 				var myChart = new Chart(ctx, {
 					type: 'bar',
@@ -295,7 +298,7 @@
 						labels: ['HP', 'Atk', 'Def', 'SpA', 'SpD', 'Spe'],
 						datasets: [{
 							label: 'Average Stats',
-							data: [hpsum, atksum, defsum, spasum, spdsum, spesum],
+							data: [hpsum, atksum, defsum, spasum, spdsum, spesum], //display average stat data
 							backgroundColor: [
 								'rgba(255, 99, 132, 0.2)',
 								'rgba(54, 162, 235, 0.2)',
@@ -315,6 +318,7 @@
 							borderWidth: 1
 						}]
 					},
+					//disable unecessary axis information and legend information
 					options: {
 						responsive: false,
 						scales: {

@@ -140,6 +140,7 @@
 		<p id="results"></p>
 		
 		<script>
+		// used to combine full dataset of pokemon with criteria sets of pokemon
 		function intersect(a, b) {
 			var t;
 			if (b.length > a.length) t = b, b = a, a = t;
@@ -148,13 +149,16 @@
 			});
 		}
 		
+		// main function that filters through criteria to get a subset of pokemon
 		function filter() {
 			var results = document.getElementById("results");
 			results.innerHTML = "";	
-		
+			// pokemon that learn stealth rock
 			var rockers = "Aerodactyl, Aggron, Amaura, Anorith, Arceus, Archen, Archeops, Armaldo, Aron, Aurorus, Azelf, Baltoy, Barbaracle, Bastiodon, Bibarel, Bidoof, Binacle, Bisharp, Blissey, Boldore, Bonsly, Bronzong, Bronzor, Camerupt, Carbink, Carracosta, Celebi, Chansey, Chimchar, Claydol, Clefable, Clefairy, Cobalion, Corsola, Cradily, Cranidos, Crustle, Cubone, Deoxys, Dialga, Diancie, Diglett, Diglett-Alola, Donphan, Drilbur, Druddigon, Dugtrio, Dugtrio-Alola, Dunsparce, Dwebble, Empoleon, Excadrill, Ferroseed, Ferrothorn, Forretress, Gabite, Garchomp, Geodude, Geodude-Alola, Gible, Gigalith, Gligar, Gliscor, Golem, Golem-Alola, Golett, Golurk, Graveler, Graveler-Alola, Grotle, Groudon, Heatran, Hippopotas, Hippowdon, Infernape, Jigglypuff, Jirachi, Kabuto, Kabutops, Kecleon, Kommoo, Krokorok, Krookodile, Lairon, Landorus, Landorus-Therian, Larvitar, Lileep, Lunatone, Lycanroc, Magcargo, Mamoswine, Marowak, Marowak-Alola, Marshtomp, Mawile, Mesprit, Metagross, Metang, Mew, Miltank, Minior, Monferno, Mudbray, Mudsdale, Necrozma, Nidoking, Nidoqueen, Nihilego, Nosepass, Numel, Omanyte, Omastar, Onix, Palossand, Palpitoad, Pawniard, Phanpy, Piloswine, Pineco, Pinsir, Piplup, Prinplup, Probopass, Pupitar, Rampardos, Regirock, Registeel, Relicanth, Rhydon, Rhyhorn, Rhyperior, Rockruff, Roggenrola, Sandile, Sandshrew, Sandshrew-Alola, Sandslash, Sandslash-Alola, Sandygast, Seismitoad, Shieldon, Shuckle, Skarmory, Solrock, Stakataka, Steelix, Stunfisk, Sudowoodo, Swampert, Swinub, Terrakion, Tirtouga, Torkoal, Torterra, Turtwig, Tyranitar, Tyrantrum, Tyrunt, Uxie, Wigglytuff, Wormadam-Sandy, Wormadam-Trash, Aerodactyl-Mega, Aggron-Mega, Camerupt-Mega, Diancie-Mega, Garchomp-Mega, Mawile-Mega, Metagross-Mega, Pinsir-Mega, Steelix-Mega, Swampert-Mega, Tyranitar-Mega, Landorus-Therian".toLowerCase();
+			// pokemon that learn defog or rapid spin
 			var removers = "Aerodactyl, Altaria, Anorith, Arceus, Archen, Archeops, Armaldo, Articuno, Avalugg, Baltoy, Beautifly, Beedrill, Bergmite, Blastoise, Blaziken, Bounsweet, Braviary, Butterfree, Carnivine, Castform, Charizard, Chatot, Chimecho, Claydol, Cloyster, Combusken, Comfey, Cottonee, Crobat, Cryogonal, Cutiefly, Dartrix, Decidueye, Delibird, Dhelmise, Donphan, Dragonite, Drampa, Drifblim, Drifloon, Drilbur, Ducklett, Dustox, Emolga, Empoleon, Excadrill, Farfetchd, Fearow, Finneon, Fletchinder, Fletchling, Florges, Flygon, Fomantis, Forretress, Giratina, Gligar, Gliscor, Golbat, Hawlucha, Hitmonchan, Hitmonlee, Hitmontop, Ho-Oh, Honchkrow, Hoothoot, Hydreigon, Illumise, Kabuto, Kabutops, Kartana, Klefki, Komala, Landorus, Latias, Latios, Ledian, Lugia, Lumineon, Lunala, Lurantis, Mandibuzz, Mantine, Masquerain, Mew, Moltres, Mothim, Murkrow, Ninjask, Noctowl, Noibat, Noivern, Nuzleaf, Oricorio, Pelipper, Pheromosa, Pidgeot, Pidgeotto, Pidgey, Pidove, Pikipek, Pineco, Piplup, Prinplup, Rayquaza, Reshiram, Ribombee, Rotom, Rowlet, Rufflet, Salamence, Sandshrew, Sandshrew-Alola, Sandslash, Sandslash-Alola, Scizor, Scyther, Seedot, Serperior, Servine, Shellder, Shiftry, Sigilyph, Silvally, Skarmory, Skuntank, Snivy, Spearow, Spinda, Squirtle, Staraptor, Staravia, Starly, Starmie, Staryu, Steenee, Stunky, Swablu, Swanna, Swellow, Swoobat, Taillow, Talonflame, TapuFini, TapuKoko, Tentacool, Tentacruel, Thundurus, Togekiss, Togetic, Torchic, Torkoal, Tornadus, Toucannon, Tranquill, Tropius, Trumbeak, Tsareena, Tyrogue, Unfezant, Venomoth, Vespiquen, Vibrava, Vivillon, Volbeat, Volcanion, Volcarona, Vullaby, Wartortle, Whimsicott, Wingull, Woobat, Xatu, Xerneas, Yanma, Yanmega, Yveltal, Zapdos, Zekrom, Zubat, Aerodactyl-Mega, Altaria-Mega, Beedrill-Mega, Blastoise-Mega, Blaziken-Mega, Charizard-MegaX, Charizard-MegaY, Latias-Mega, Latios-Mega, Pidgeot-Mega, Rayquaza-Mega, Salamence-Mega, Scizor-Mega, Landorus-Therian, Thundurus-Therian, Tornadus-Therian, Rotom-Wash, Rotom-Heat, Rotom-Mow, Rotom-Fan, Rotom-Frost".toLowerCase();
 			
+			// pokemon that contain indicated type
 			var fire = "Arcanine, Arceus-Fire, Blacephalon, Blaziken, Braixen, Camerupt, Castform-Sunny, Chandelure, Charizard, Charmander, Charmeleon, Chimchar, Combusken, Cyndaquil, Darmanitan, Darumaka, Delphox, Emboar, Entei, Fennekin, Flareon, Fletchinder, Groudon-Primal, Growlithe, Heatmor, Heatran, Ho-Oh, Houndoom, Houndour, Incineroar, Infernape, Lampent, Larvesta, Litleo, Litten, Litwick, Magby, Magcargo, Magmar, Magmortar, Marowak-Alola, Marowak-Alola-Totem, Moltres, Monferno, Ninetales, Numel, Oricorio, Pansear, Pignite, Ponyta, Pyroar, Quilava, Rapidash, Reshiram, Rotom-Heat, Salandit, Salazzle, Silvally-Fire, Simisear, Slugma, Talonflame, Tepig, Torchic, Torkoal, Torracat, Turtonator, Typhlosion, Victini, Volcanion, Volcarona, Vulpix, Blaziken-Mega, Camerupt-Mega, Charizard-MegaX, Charizard-MegaY, Houndoom-Mega, Rotom-Heat".toLowerCase();
 			var water = "Alomomola, Araquanid, Arceus-Water, Azumarill, Barbaracle, Barboach, Basculin, Bibarel, Binacle, Blastoise, Brionne, Bruxish, Buizel, Carracosta, Carvanha, Castform-Rainy, Chinchou, Clamperl, Clauncher, Clawitzer, Cloyster, Corphish, Corsola, Crawdaunt, Croconaw, Dewgong, Dewott, Dewpider, Ducklett, Empoleon, Feebas, Feraligatr, Finneon, Floatzel, Frillish, Froakie, Frogadier, Gastrodon, Goldeen, Golduck, Golisopod, Gorebyss, Greninja, Gyarados, Horsea, Huntail, Jellicent, Kabuto, Kabutops, Keldeo, Kingdra, Kingler, Krabby, Kyogre, Lanturn, Lapras, Lombre, Lotad, Ludicolo, Lumineon, Luvdisc, Magikarp, Manaphy, Mantine, Mantyke, Mareanie, Marill, Marshtomp, Milotic, Mudkip, Octillery, Omanyte, Omastar, Oshawott, Palkia, Palpitoad, Panpour, Pelipper, Phione, Piplup, Politoed, Poliwag, Poliwhirl, Poliwrath, Popplio, Primarina, Prinplup, Psyduck, Pyukumuku, Quagsire, Qwilfish, Relicanth, Remoraid, Rotom-Wash, Samurott, Seadra, Seaking, Sealeo, Seel, Seismitoad, Sharpedo, Shellder, Shellos, Silvally-Water, Simipour, Skrelp, Slowbro, Slowking, Slowpoke, Spheal, Squirtle, Starmie, Staryu, Suicune, Surskit, Swampert, Swanna, TapuFini, Tentacool, Tentacruel, Tirtouga, Totodile, Toxapex, Tympole, Vaporeon, Volcanion, Wailmer, Wailord, Walrein, Wartortle, Whiscash, Wimpod, Wingull, Wishiwashi, Wooper, Blastoise-Mega, Gyarados-Mega, Sharpedo-Mega, Slowbro-Mega, Swampert-Mega, Rotom-Wash".toLowerCase();
 			var grass = "Abomasnow, Amoonguss, Arceus-Grass, Bayleef, Bellossom, Bellsprout, Bounsweet, Breloom, Budew, Bulbasaur, Cacnea, Cacturne, Carnivine, Celebi, Cherrim, Cherubi, Chesnaught, Chespin, Chikorita, Cottonee, Cradily, Dartrix, Decidueye, Deerling, Dhelmise, Exeggcute, Exeggutor, Exeggutor-Alola, Ferroseed, Ferrothorn, Fomantis, Foongus, Gloom, Gogoat, Gourgeist, Grotle, Grovyle, Hoppip, Ivysaur, Jumpluff, Kartana, Leafeon, Leavanny, Lileep, Lilligant, Lombre, Lotad, Ludicolo, Lurantis, Maractus, Meganium, Morelull, Nuzleaf, Oddish, Pansage, Paras, Parasect, Petilil, Phantump, Pumpkaboo, Quilladin, Roselia, Roserade, Rotom-Mow, Rowlet, Sawsbuck, Sceptile, Seedot, Serperior, Servine, Sewaddle, Shaymin, Shiftry, Shiinotic, Shroomish, Silvally-Grass, Simisage, Skiddo, Skiploom, Snivy, Snover, Steenee, Sunflora, Sunkern, Swadloon, Tangela, Tangrowth, TapuBulu, Torterra, Treecko, Trevenant, Tropius, Tsareena, Turtwig, Venusaur, Victreebel, Vileplume, Virizion, Weepinbell, Whimsicott, Wormadam, Abomasnow-Mega, Sceptile-Mega, Venusaur-Mega, Rotom-Mow".toLowerCase();
@@ -180,6 +184,7 @@
 			var ctier = "Abomasnow-Mega, Absol, Accelgor, Aerodactyl, Ambipom, Ampharos-Mega, Archeops, Aromatisse, Audino-Mega, Avalugg, Banette-Mega, Bewear, Blastoise, Bouffalant, Braviary, Bruxish, Camerupt-Mega, Carracosta, Chesnaught, Cinccino, Cofagrigus, Comfey, Cradily, Cryogonal, Dhelmise, Diancie, Dodrio, Drampa, Drapion, Druddigon, Eelektross, Electivire, Exploud, Forretress, Froslass, Gallade, Garbodor, Gardevoir, Gastrodon, Gigalith, Glalie-Mega, Golbat, Golem-Alola, Golurk, Gourgeist, Granbull, Hariyama, Heliolisk, Hitmonlee, Hitmontop, Honchkrow, Houndoom, Huntail, Incineroar, Jellicent, Kabutops, Kecleon, Kingler, Klinklang, Komala, Lanturn, Leavanny, Lilligant, Linoone, Ludicolo, Lycanroc-Day, Magmortar, Magneton, Malamar, Mantine, Medicham, Meowstic-Male, Mesprit, Miltank, Mismagius, Mudsdale, Musharna, Ninetales, Noivern, Palossand, Pangoro, Passimian, Persian-Alola, Piloswine, Primeape, Pyroar, Quagsire, Qwilfish, Raichu, Raichu-Alola, Regice, Regirock, Rhydon, Rhyperior, Rotom-Fan, Rotom-Frost, Sableye, Samurott, Sawk, Sceptile, Scrafty, Shuckle, Sigilyph, Smeargle, Sneasel, Spiritomb, Stoutland, Swellow, Swoobat, Talonflame, Tauros, Torkoal, Torterra, Toxicroak, Trevenant, Tsareena, Typenull, Typhlosion, Umbreon, Ursaring, Uxie, Vanilluxe, Venomoth, Venusaur, Vikavolt, Vileplume, Weezing, Wishiwashi, Xatu, Yanmega, Zangoose, Zoroark".toLowerCase();
 			var dtier = "Abomasnow, Aggron, Altaria, Ampharos, Arbok, Ariados, Armaldo, Articuno, Audino, Aurorus, Basculin, Bastiodon, Beartic, Beautifly, Beheeyem, Bellossom, Bibarel, Butterfree, Cacturne, Camerupt, Carbink, Carnivine, Charizard, Chatot, Chimecho, Clawitzer, Claydol, Clefairy, Corsola, Crabominable, Crustle, Dewgong, Drifblim, Drilbur, Dugtrio, Dugtrio-Alola, Dunsparce, Duosion, Dusclops, Dusknoir, Electrode, Exeggutor, Exeggutor-Alola, Farfetchd, Fearow, Ferroseed, Flareon, Floatzel, Furfrou, Glaceon, Gogoat, Golduck, Golem, Gorebyss, Gothitelle, Gumshoos, Gurdurr, Guzzlord, Haunter, Hitmonchan, Hypno, Illumise, Jumpluff, Jynx, Kadabra, Kangaskhan, Kricketune, Lapras, Leafeon, Lickilicky, Liepard, Lopunny, Lunatone, Lurantis, Luxray, Lycanroc-Midnight, Manectric, Maractus, Marowak, Masquerain, Mawile, Meganium, Meowstic-F, Mightyena, Mothim, Mr. Mime, Muk, Murkrow, Noctowl, Octillery, Oranguru, Oricorio, Pachirisu, Parasect, Pawniard, Persian, Phione, Pidgeot, Pikachu, Pinsir, Poliwrath, Probopass, Purugly, Pyukumuku, Rampardos, Rapidash, Raticate, Raticate-Alola, Regigigas, Relicanth, Rotom, Sandslash, Sandslash-Alola, Sawsbuck, Scyther, Seaking, Shedinja, Shiftry, Shiinotic, Simipour, Simisage, Simisear, Skuntank, Slaking, Solrock, Stantler, Steelix, Stunfisk, Sudowoodo, Sunflora, Swalot, Swanna, Tangela, Throh, Togedemaru, Togetic, Toucannon, Tropius, Turtonator, Unfezant, Vespiquen, Victreebell, Vivillon, Volbeat, Wailord, Walrein, Whiscash, Wigglytuff, Wormadam, Zebstrika".toLowerCase();
 			
+			//break down extracted strings into arrays
 			var rockers_list = rockers.split(", ");
 			var removers_list = removers.split(", ");
 			
@@ -208,6 +213,7 @@
 			var c_list = ctier.split(", ");
 			var d_list = dtier.split(", ");
 			
+			//get criteria according to user input
 			var tier = document.getElementById("tier");
 			var tier_value = tier.options[tier.selectedIndex].value;
 			
@@ -221,7 +227,7 @@
 			var removal_value = removal.checked;
 			
 			var start = [];
-			
+			//create appropriate set of pokemon to filter through based on desired tier
 			if (tier_value.valueOf() == "all") {
 				start = s_list.concat(a_list, b_list, c_list, d_list);
 			}
@@ -242,7 +248,7 @@
 			}
 			
 			var tier_type = [];
-			
+			//filter through earlier tier set of pokemon, with types
 			if (type_value.valueOf() == "all") {
 				tier_type = start.slice();
 			}
@@ -302,22 +308,23 @@
 			}
 			
 			var tier_type_rocks = tier_type.slice();
-			
+			//filter via pokemon that learn stealth rock if indicated
 			if (rocks_value) {
 				tier_type_rocks = intersect(tier_type,rockers_list);
 			}
 			
 			var tier_type_rocks_removers = tier_type_rocks.slice();
-			
+			//filter via pokemon that learn hazard removal if indicated
 			if (removal_value) {
 				tier_type_rocks_removers = intersect(tier_type_rocks,removers_list);
 			}
 			
 			results.innerHTML = "";	
-			
+			//use lambda function to create all <img> objects
 			tier_type_rocks_removers.forEach(makeImage);
 		}
 		
+		//used to make html of image objects that are returned after filtering
 		function makeImage(mon) {
 			results.innerHTML += "<img src='https://play.pokemonshowdown.com/sprites/xyani/".concat(mon,".gif' title='",mon,"'>");
 		}
